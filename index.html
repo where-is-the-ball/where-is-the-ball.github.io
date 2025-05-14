@@ -86,6 +86,13 @@
 			</div>
 		</div>
 
+		<!-- Conference name -->
+		<h4
+			class="text-center"
+			style="margin-top: 8px; margin-bottom: 17px; font-weight: bold; font-size: 27px; color: #d55478">
+			11th CVsports @ CVPR 2025
+		</h4>
+
 		<!-- Teaser -->
 		<div
 			class="container-lg"
@@ -156,18 +163,10 @@
 				<div class="col-md-12">
 					<h2>Key distinctions</h2>
 					<ol>
-						<li>
-                            TBD
-						</li>
-						<li>
-                            TBD
-						</li>
-						<li>
-                            TBD
-						</li>
-						<li>
-                            TBD
-						</li>
+						<li>TBD</li>
+						<li>TBD</li>
+						<li>TBD</li>
+						<li>TBD</li>
 					</ol>
 					<br />
 				</div>
@@ -180,7 +179,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h2>Our pipeline</h2>
-                    TBD
+					TBD
 					<p>
 						<!-- The general idea of our method is simple: we first encode an input image into a feature vector
 						that
@@ -204,6 +203,7 @@
 						generative process of the DDIM conditioned on the encodings of the input image to obtain xT.
 						Then, we modify the light encoding and decode xT back to a relit output.
 					</p> -->
+					</p>
 				</div>
 			</div>
 		</div>
@@ -269,7 +269,11 @@
 							<a
 								href="content/tennis_visualizer-main/tennis_real.html?input=../trajectories/Tennis/tennis_real.json"
 								target="_blank">
-								<img src="content/images/tennis.gif" alt="Tennis Real" class="thumb-img-tennis" style="transform-origin: top center;"/>
+								<img
+									src="content/images/tennis.gif"
+									alt="Tennis Real"
+									class="thumb-img-tennis"
+									style="transform-origin: top center" />
 								<div class="overlay-icon" style="top: 100%">🔍</div>
 							</a>
 							<div class="caption">Real</div>
@@ -278,7 +282,11 @@
 							<a
 								href="content/tennis_visualizer-main/tennis_synthetic.html?input=../trajectories/Tennis/tennis_synthetic.json"
 								target="_blank">
-								<img src="content/images/tennis.gif" alt="Tennis Synthetic" class="thumb-img-tennis" style="transform-origin: bottom center;"/>
+								<img
+									src="content/images/tennis.gif"
+									alt="Tennis Synthetic"
+									class="thumb-img-tennis"
+									style="transform-origin: bottom center" />
 								<div class="overlay-icon" style="top: 25%">🔍</div>
 							</a>
 							<div class="caption">Synthetic</div>
@@ -516,6 +524,67 @@
 			<video class="video_results" controls playsinline autoplay muted loop>
 				<source src="content/videos/sota/ours_5sd.mp4" type="video/mp4" />
 			</video>
+		</div>
+
+		<!-- Acknowledgement -->
+		<!-- <hr class="divider" style="max-width: 1500px" /> -->
+		<hr class="divider" />
+		<div class="container" style="max-width: 900px">
+			<h2>Acknowledgements</h2>
+			We thank <a href="http://www.krematas.com/">Dr. Konstantinos Rematas</a> for his valuable feedback,
+			guidance, and assistance with revisions and figures. His work,
+			<a href="https://grail.cs.washington.edu/projects/soccer/">Soccer On Your Tabletop</a>, and earlier
+			explorations greatly inspired us and helped shape our approach.
+		</div>
+
+		<!-- Citation -->
+		<hr class="divider" />
+		<div class="container" style="max-width: 900px">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Citation</h2>
+					<!-- your note above the code box -->
+					<p class="citation-note">
+						(Preprint—accepted to CVSports 2025; to appear. Please cite this project page in the meantime.)
+					</p>
+					<code>
+						@misc{ponglertnapakorn2025whereistheball, <br />
+						&nbsp; title={Where Is The Ball: 3D Ball Trajectory Estimation From 2D Monocular Tracking},<br />
+						&nbsp; author={Ponglertnapakorn, Puntawat and Suwajanakorn, Supasorn},<br />
+						&nbsp; howpublished={\url{https://where-is-the-ball.github.io/}},<br />
+						&nbsp; year={2025}<br />
+						}
+					</code>
+				</div>
+			</div>
+		</div>
+
+		<!-- <hr class="divider"> -->
+		<script src="./files/polyfill.js.download"></script>
+		<script src="./files/yall.js.download"></script>
+		<script>
+			yall({
+				observeChanges: true,
+			});
+		</script>
+		<script src="./files/scripts.js.download"></script>
+		<script src="./files/jquery.min.js.download"></script>
+		<script src="./files/bootstrap.bundle.min.js.download"></script>
+		<script src="./files/webflow.fd002feec.js.download"></script>
+
+		<!-- Import the component -->
+		<div class="end" style="margin-top: 30px">
+			<div style="text-align: center">
+				<a href="https://vistec.ist/vision" target="_blank"
+					><img src="./content/logo/vll_logo.png" style="width: 130px; display: inline; margin: 0 100px"
+				/></a>
+				<a href="https://vistec.ist/" target="_blank"
+					><img
+						src="./content/logo/vistec_logo.png"
+						class="vistec-offset"
+						style="width: 130px; display: inline; margin: 0 100px; position: relative"
+				/></a>
+			</div>
 		</div>
 	</body>
 </html>
