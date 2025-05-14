@@ -266,3 +266,75 @@ html {
 .visualizer-links a:hover {
 	text-decoration: underline;
 }
+
+/* Thumbnail wrapper */
+.thumb {
+	position: relative;
+	display: inline-block;
+	margin: 1em 0;
+	z-index: 1;
+	overflow: visible; /* allow zoom overflow */
+}
+/* Magnifier icon (hidden by default) */
+.overlay-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 2rem;
+	color: rgba(255, 255, 255, 0.9);
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease;
+}
+/* The GIF */
+.thumb-img-tennis {
+	display: block;
+	width: 300px; /* small default size */
+	height: auto;
+	border: 3px solid #000;
+	transition: transform 0.3s ease;
+	/* transform-origin: center center; */
+	/* transform-origin: top center;
+	transform-origin: top center; */
+
+}
+
+.thumb:hover {
+	z-index: 100;
+}
+
+/* Zoom + show icon on hover */
+.thumb:hover .thumb-img-tennis {
+	/* transform: scale(2.3); enlarge */
+	transform: scale(1.7); /* enlarge */
+}
+
+.thumb:hover .overlay-icon {
+	opacity: 1;
+}
+
+/* The GIF */
+.thumb-img-trajectory {
+	display: block;
+	width: 500px; /* small default size */
+	height: auto;
+	/* border: 3px solid #000; */
+	transition: transform 0.3s ease;
+	transform-origin: center center;
+}
+/* Zoom + show icon on hover */
+.thumb:hover .thumb-img-trajectory {
+	transform: scale(1.1); /* enlarge */
+	z-index: 10; /* float above siblings */
+}
+
+
+/* Caption under each thumbnail */
+.caption {
+	/* margin-top: 0.5em; */
+	margin-bottom: -2em;
+	font-size: 0.9em;
+	color: #333;
+}

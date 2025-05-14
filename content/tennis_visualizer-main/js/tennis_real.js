@@ -403,6 +403,7 @@ readData(function () {
       if (e.which == 40 || e.which == 38) {
         console.log("Showing trajectory ", config.traj_id);
         customAddTrajectory();
+        updateCourtColor(scene, config.traj_id);
       }
     });
 

@@ -157,20 +157,16 @@
 					<h2>Key distinctions</h2>
 					<ol>
 						<li>
-							Tackles hard scenarios: removing or altering strong cast shadows and highlights with
-							temporal consistency.
+                            TBD
 						</li>
 						<li>
-							Bypasses the need for <em>accurate</em> intrinsic estimation of 3D shape, albedo, or
-							lighting, yet produces realistic results.
+                            TBD
 						</li>
 						<li>
-							Only requires 2D images to train. No need for any multiview images, relit pairs, 3D or
-							lighting ground truth!
+                            TBD
 						</li>
 						<li>
-							Relights in a single network pass without diffusion sampling, once given pre-processed
-							input.
+                            TBD
 						</li>
 					</ol>
 					<br />
@@ -184,8 +180,9 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h2>Our pipeline</h2>
+                    TBD
 					<p>
-						The general idea of our method is simple: we first encode an input image into a feature vector
+						<!-- The general idea of our method is simple: we first encode an input image into a feature vector
 						that
 						<em>disentangles</em> the lighting information from all other information in the image, then
 						modify the lighting information in the vector and decode it. The challenge here is how to
@@ -206,7 +203,7 @@
 						decoder conditioned on these encodings. To relight an input face image, we reverse the
 						generative process of the DDIM conditioned on the encodings of the input image to obtain xT.
 						Then, we modify the light encoding and decode xT back to a relit output.
-					</p>
+					</p> -->
 				</div>
 			</div>
 		</div>
@@ -236,30 +233,55 @@
 
 			<div class="container" style="max-width: 1200px">
 				<div class="visualizer-container">
+					<!-- Trajectory Column -->
 					<div class="visualizer-column">
-						<h4>Trajectory Visualizer</h4>
-						<a href="content/checkerboard.html" target="_blank" class="visualizer-link">
-							<img
-								src="content/images/checkerboard.gif"
-								alt="Trajectory Visualizer"
-								class="visualizer-img" />
-						</a>
+						<h4 class="heading-with-logo">
+							<img src="./content/logo/mocap_logo.png" alt="Logo" class="heading-logo" />
+							<img src="./content/logo/football_logo.png" alt="Logo" class="heading-logo" />
+							<img src="./content/logo/sim_logo.png" alt="Logo" class="heading-logo" />
+							Trajectory Visualizer
+							<img src="./content/logo/mocap_logo.png" alt="Logo" class="heading-logo" />
+							<img src="./content/logo/football_logo.png" alt="Logo" class="heading-logo" />
+							<img src="./content/logo/sim_logo.png" alt="Logo" class="heading-logo" />
+						</h4>
+						<br />
+						<div class="thumb">
+							<a href="content/checkerboard.html" target="_blank">
+								<img
+									src="content/images/checkerboard.gif"
+									alt="Trajectory Visualizer"
+									class="thumb-img-trajectory" />
+								<div class="overlay-icon">🔍</div>
+							</a>
+						</div>
 					</div>
 
+					<!-- Tennis Column -->
 					<div class="visualizer-column">
-						<h4>Tennis Visualizer</h4>
-						<img src="content/images/tennis.gif" alt="Tennis Visualizer" class="visualizer-img" />
-						<div class="visualizer-links">
+						<h4 class="heading-with-logo">
+							<img src="./content/logo/tennis_logo.png" alt="Logo" class="heading-logo" />
+							Tennis Visualizer
+							<img src="./content/logo/tennis_logo.png" alt="Logo" class="heading-logo" />
+						</h4>
+						<br />
+
+						<div class="thumb">
 							<a
 								href="content/tennis_visualizer-main/tennis_real.html?input=../trajectories/Tennis/tennis_real.json"
-								target="_blank"
-								>Tennis - Real</a
-							>
+								target="_blank">
+								<img src="content/images/tennis.gif" alt="Tennis Real" class="thumb-img-tennis" style="transform-origin: top center;"/>
+								<div class="overlay-icon" style="top: 100%">🔍</div>
+							</a>
+							<div class="caption">Real</div>
+						</div>
+						<div class="thumb">
 							<a
 								href="content/tennis_visualizer-main/tennis_synthetic.html?input=../trajectories/Tennis/tennis_synthetic.json"
-								target="_blank"
-								>Tennis - Synthetic</a
-							>
+								target="_blank">
+								<img src="content/images/tennis.gif" alt="Tennis Synthetic" class="thumb-img-tennis" style="transform-origin: bottom center;"/>
+								<div class="overlay-icon" style="top: 25%">🔍</div>
+							</a>
+							<div class="caption">Synthetic</div>
 						</div>
 					</div>
 				</div>

@@ -161,3 +161,48 @@ function drawCourt(scene) {
     }
 
 }
+
+function updateCourtColor(scene, tid) {
+  if  (tid > 0 && tid < 6) {
+    console.log("TID (1-5)");
+    drawCenteredRect(scene, 30, 40, -0.011, 0x9ab389); // Outer court
+    drawCenteredRect(scene, w1*2, h1*2, -0.01, 0x706b8a);  // Inner court
+  }
+  else if (tid >= 6 && tid <= 7 ) {
+    // TID (6-7)
+    console.log("TID (6-7)");
+    drawCenteredRect(scene, 30, 40, -0.011, 0x6B8845); // Outer court
+    drawCenteredRect(scene, w1*2, h1*2, -0.01, 0x7D9A57);  // Inner court
+  }
+  else if (tid >= 8 && tid <= 10) {
+    // TID (8-10)
+    console.log("TID (8-10)");
+    drawCenteredRect(scene, 30, 40, -0.011, 0x86AA5C); // Outer court
+    drawCenteredRect(scene, w1*2, h1*2, -0.01, 0x755DAC);  // Inner court
+  }
+  else if (tid >= 11 && tid <= 12) {
+    // TID (11-12)
+    console.log("TID (11-12)");
+    drawCenteredRect(scene, 30, 40, -0.011, 0x5EA375); // Outer court
+    drawCenteredRect(scene, w1*2, h1*2, -0.01, 0x538471);  // Inner court
+  }
+  else if (tid >= 13 && tid <= 14) {
+    // TID (13-14)
+    console.log("TID (13-14)");
+    drawCenteredRect(scene, 30, 40, -0.011, 0xB47254);
+    drawCenteredRect(scene, w1*2, h1*2, -0.01, 0xB47254);
+  }
+  else if (tid == 15) {
+    // TID (15)
+    console.log("TID (15)");
+    drawCenteredRect(scene, 30, 40, -0.011, 0x6B8F6A);
+    drawCenteredRect(scene, w1*2, h1*2, -0.01, 0x485890);
+  }
+  else if (tid >= 16 && tid <= 20) {
+    // TR (16-20)
+    console.log("TR (16-20)");
+    drawCenteredRect(scene, 30, 40, -0.011, 0x66B1F2);
+    drawCenteredRect(scene, w1*2, h1*2, -0.01, 0x4166AB);
+  }
+
+}
