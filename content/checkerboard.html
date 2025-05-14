@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <!--Tennis-->
+    <body>
+        <style type="text/css">
+            .tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+            .tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+              font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+            .tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+              font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+            .tg .tg-8vpk{border-color:#000000;font-family:Arial, Helvetica, sans-serif !important;;font-size:22px;text-align:center;
+              vertical-align:middle}
+            .tg .tg-a5zs{border-color:#000000;font-family:Arial, Helvetica, sans-serif !important;;font-size:22px;text-align:center;
+              vertical-align:top}
+            .tg .tg-vpca{border-color:#000000;font-family:Arial, Helvetica, sans-serif !important;;font-size:22px;text-align:left;
+              vertical-align:top}
+            * {
+                box-sizing: border-box;
+            }
+            /* Create two equal columns that floats next to each other */
+            .column {
+                float: left;
+                width: 50%;
+                height: 300px; /* Should be removed. Only for demonstration */
+            }
+
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+            .left {
+              width: 85%;
+            }
+            .right {
+              width: 15%;
+            }
+
+            .space { margin-top: 500px; }
+
+            a {font-size: 20px}
+
+            .center {
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+              width: 50%;
+            }
+            .background-img {
+              height: 100%;
+              width: 100%;
+              position: relative;
+              z-index: -1;
+            }
+            iframe {
+              border: none;
+            }
+            body {
+              font-family: 'Google Sans', sans-serif;
+              margin: 0px;
+              background-color: #e6e6e6;
+            }
+            h1 {
+              padding-left: 20px;
+            }
+             </style>
+             <script>
+               function changetitle(dataset) {
+                document.getElementById("title").innerText = "Trajectory Visualizer: " + dataset;
+               }
+             </script>
+
+            <header>
+              <h1 id="title"> Trajectory Visualizer: Mocap - Real </h1>
+            </header>
+     
+            <div class="row">
+              <div class="column left">
+                <iframe name="cb" height="870" width="1550" scroll=False src="tennis_visualizer-main/checkerboard_mocap.html?input=../trajectories/Mocap/mocap_real.json"></iframe>
+              </div>
+              <div style="position: absolute; top: 500px; left: 20px;">
+                <h2 style="color:rgb(1, 25, 44);font-size:25px;"> Datasets:</h2>
+                <a id="mocap_real" href="./tennis_visualizer-main/checkerboard_mocap.html?input=../trajectories/Mocap/mocap_real.json" target="cb" onclick="changetitle('Mocap - Real')"> Mocap - Real</a>
+                <br>                              
+                <a id="mocap_synthetic" href="./tennis_visualizer-main/checkerboard_mocap.html?input=../trajectories/Mocap/mocap_synthetic.json" target="cb" onclick="changetitle('Mocap - Synthetic')"> Mocap - Synthetic</a>
+                <br>
+                <a id="ipl_real" href="./tennis_visualizer-main/checkerboard_ipl.html?input=../trajectories/IPL/ipl_real.json" target="cb" onclick="changetitle('IPL(Soccer) - Real')"> IPL(Soccer) - Real</a>
+                <br>
+                <a id="ipl_synthetic" href="./tennis_visualizer-main/checkerboard_ipl.html?input=../trajectories/IPL/ipl_synthetic.json" target="cb" onclick="changetitle('IPL(Soccer) - Synthetic')"> IPL(Soccer) - Synthetic</a>
+                <br>
+                <a id="simple_synthetic" href="./tennis_visualizer-main/checkerboard_sota.html?input=../trajectories/SOTA/mocanu/mocanu_ours_clean.json" target="cb"> Single Launch - Synthetic </a>
+              </div>
+            </div>
+
+            <div id="show_ss" style="position: absolute; top: 70px; right: 50px;">
+              <h2 style="color:rgb(1, 25, 44);font-size:25px;"></h2>
+                <a id="clean_mocanu" href="" target="cb" onclick="changetitle('Single Launch => Mocanu Vs. Ours (Clean data)')"></a><br>
+                <a id="l1_mocanu" href="" target="cb" onclick="changetitle('Single Launch => Mocanu Vs. Ours (+-5 Pixels noise)')"></a><br>
+                <a id="l2_mocanu" href="" target="cb" onclick="changetitle('Single Launch => Mocanu Vs. Ours (+-10 Pixels noise)')"></a><br>
+                <a id="l3_mocanu" href="" target="cb" onclick="changetitle('Single Launch => Mocanu Vs. Ours (+-15 Pixels noise)')"></a><br>
+                <a id="l4_mocanu" href="" target="cb" onclick="changetitle('Single Launch => Mocanu Vs. Ours (+-20 Pixels noise)')"></a><br>
+                <a id="l5_mocanu" href="" target="cb" onclick="changetitle('Single Launch => Mocanu Vs. Ours (+-25 Pixels noise)')"></a><br>
+
+                <a id="clean_shen" href="" target="cb" onclick="changetitle('Single Launch => Shen Vs. Ours (Clean data))')"></a><br>
+                <a id="l1_shen" href="" target="cb" onclick="changetitle('Single Launch => Shen Vs. Ours (+-5 Pixels noise)')"></a><br>
+                <a id="l2_shen" href="" target="cb" onclick="changetitle('Single Launch => Shen Vs. Ours (+-10 Pixels noise)')"></a><br>
+                <a id="l3_shen" href="" target="cb" onclick="changetitle('Single Launch => Shen Vs. Ours (+-15 Pixels noise)')"></a><br>
+                <a id="l4_shen" href="" target="cb" onclick="changetitle('Single Launch => Shen Vs. Ours (+-20 Pixels noise)')"></a><br>
+                <a id="l5_shen" href="" target="cb" onclick="changetitle('Single Launch => Shen Vs. Ours (+-25 Pixels noise)')"></a><br>
+            </div>
+
+          <script>
+
+            document.getElementById('simple_synthetic').onclick = function() {
+              changetitle('Single Launch => Mocanu Vs. Ours (Clean data)')
+              create_link('clean_mocanu', "./tennis_visualizer-main/checkerboard_sota.html?input=../trajectories/SOTA/mocanu/mocanu_ours_clean.json", "Mocanu Vs. Ours (Clean data)")
+              create_link('l1_mocanu', "./tennis_visualizer-main/checkerboard_sota.html?input=../trajectories/SOTA/mocanu/mocanu_ours_1sd.json", "Mocanu Vs. Ours (+- 5 Pixels noise)")
+              create_link('l2_mocanu', "./tennis_visualizer-main/checkerboard_sota.html?input=../trajectories/SOTA/mocanu/mocanu_ours_2sd.json", "Mocanu Vs. Ours (+- 10 Pixels noise)")
+              create_link('l3_mocanu', "./tennis_visualizer-main/checkerboard_sota.html?input=../trajectories/SOTA/mocanu/mocanu_ours_3sd.json", "Mocanu Vs. Ours (+- 15 Pixels noise)")
+              create_link('l4_mocanu', "./tennis_visualizer-main/checkerboard_sota.html?input=../trajectories/SOTA/mocanu/mocanu_ours_4sd.json", "Mocanu Vs. Ours (+- 20 Pixels noise)")
+              create_link('l5_mocanu', "./tennis_visualizer-main/checkerboard_sota.html?input=../trajectories/SOTA/mocanu/mocanu_ours_5sd.json", "Mocanu Vs. Ours (+- 25 Pixels noise)")
+
+              create_link('clean_shen', "./tennis_visualizer-main/checkerboard_sota.html?input=../trajectories/SOTA/shen/shen_ours_clean.json", "Shen Vs. Ours (Clean data)")
+              create_link('l1_shen', "./tennis_visualizer-main/checkerboard_sota.html?input=../trajectories/SOTA/shen/shen_ours_1sd.json", "Shen Vs. Ours (+- 5 Pixels noise)")
+              create_link('l2_shen', "./tennis_visualizer-main/checkerboard_sota.html?input=../trajectories/SOTA/shen/shen_ours_2sd.json", "Shen Vs. Ours (+- 10 Pixels noise)")
+              create_link('l3_shen', "./tennis_visualizer-main/checkerboard_sota.html?input=../trajectories/SOTA/shen/shen_ours_3sd.json", "Shen Vs. Ours (+- 15 Pixels noise)")
+              create_link('l4_shen', "./tennis_visualizer-main/checkerboard_sota.html?input=../trajectories/SOTA/shen/shen_ours_4sd.json", "Shen Vs. Ours (+- 20 Pixels noise)")
+              create_link('l5_shen', "./tennis_visualizer-main/checkerboard_sota.html?input=../trajectories/SOTA/shen/shen_ours_5sd.json", "Shen Vs. Ours (+- 25 Pixels noise)")
+            }
+
+
+            document.getElementById('mocap_real').onclick = function() {
+              hide_ss_link()
+              changetitle('Mocap - Real')
+            }
+
+            document.getElementById('mocap_synthetic').onclick = function() {
+              hide_ss_link()
+              changetitle('Mocap - Synthetic')
+            }
+
+            document.getElementById('ipl_real').onclick = function() {
+              hide_ss_link()
+              changetitle('IPL(Soccer) - Real')
+            }
+
+            document.getElementById('ipl_synthetic').onclick = function() {
+              hide_ss_link()
+              changetitle('IPL(Soccer) - Synthetic')
+            }
+
+
+            function hide_ss_link(){
+              create_link('clean_mocanu', "", "")
+              create_link('l1_mocanu', "", "")
+              create_link('l2_mocanu', "", "")
+              create_link('l3_mocanu', "", "")
+              create_link('l4_mocanu', "", "")
+              create_link('l5_mocanu', "", "")
+
+              create_link('clean_shen', "", "")
+              create_link('l1_shen', "", "")
+              create_link('l2_shen', "", "")
+              create_link('l3_shen', "", "")
+              create_link('l4_shen', "", "")
+              create_link('l5_shen', "", "")
+
+            }
+
+            function create_link(id, link, name){
+              ele = document.getElementById(id)
+              ele.innerText = name
+              ele.href = link
+            };
+
+          </script>
+    </body>
+</html>

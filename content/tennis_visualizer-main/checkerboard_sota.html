@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		<style>
+			body { 
+        margin: 0; 
+        font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+        background: #e6e6e6; 
+      } 
+      #control {
+        width: 300px;
+        height: 100vh;
+        padding: 0px;
+      }
+      #render {
+        background-color: white;
+        width: 1200px;
+        height: 750px;
+        border: 5px solid black;
+        position: absolute;
+        left: 300px;
+        top: 0;
+        margin: 5px;
+      }
+      #extra {
+        padding: 4px;
+        margin-top: 15px;
+      }
+      #slider {
+        position: absolute;
+        width: 500px;
+        height: 10px;
+        top: 770px;
+      }
+
+		</style>
+    <link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/dat.gui.min.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/three.min.js"></script>
+    <script src="js/OrbitControls.js"></script>
+    <script src="js/VRButton.js"></script>
+    <script src="js/pca.min.js"></script>
+    <script src="js/Reflector.js"></script>
+    <script src="js/utilities.js"></script>
+    <script src="js/trajectory.js"></script>
+		<script src="js/checkerboard_sota.js">
+		</script>
+    <div id="control">
+      <div id="extra">
+      <!-- <a id="savetopng" href="">Render to png</a><br> -->
+      <!-- <a id="download" href="">Download as png</a><br> -->
+      Use key up/down to change trajectory.
+      </div>
+    </div>
+    <div id="render">
+    <div id="slider">
+      <div id="slider_left" class="knob"><div class="tip"></div></div>
+      <div id="slider_right" class="knob"><div class="tip"></div></div>
+      <div id="slider_key" class="knob"><div class="tip"></div></div>
+      <div id="slider_band"></div>
+    </div>
+    </div>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Tennis Visualizer</title>
+		<style>
+			body { 
+        margin: 0; 
+        font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+      } 
+      #control {
+        background: #414141;
+        width: 300px;
+        height: 100vh;
+        float: left;
+        padding: 10px;
+        display: none;
+      }
+      #clip {
+        position:absolute;
+      }
+      #slider {
+        position: absolute;
+        width: 500px;
+        height: 10px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 75%;
+      }
+		</style>
+    <link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+    <!-- <script src="./Tennis_dat/game1_tid_desc.json"></script> -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/dat.gui.min.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/three.min.js"></script>
+    <script src="js/VRButton.js"></script>
+    <script src="js/OBJLoader.js"></script>
+    <script src="js/OrbitControls.js"></script>
+    <script src="js/utilities.js"></script>
+    <script src="js/court.js"></script>
+    <script src="js/trajectory.js"></script>
+		<script src="js/tennis_synthetic.js">
+		</script>
+    <div id="slider">
+      <div id="slider_left" class="knob"><div class="tip"></div></div>
+      <div id="slider_right" class="knob"><div class="tip"></div></div>
+      <div id="slider_key" class="knob"><div class="tip"></div></div>
+      <div id="slider_band"></div>
+    </div>
+    <div id="control">
+      <input type="checkbox" id="showall" name="showall" checked>Show full trajectory
+    </div>
+    <div id="clip">
+      <img id="imgclip">
+    </div>
+	</body>
+</html>

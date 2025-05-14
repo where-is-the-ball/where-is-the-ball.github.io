@@ -1,0 +1,128 @@
+var clipdat = {
+    "0": {
+        "g_name": "game1",
+        "c_name": "Clip1",
+        "f_start": 33,
+        "f_end": 191
+    },
+    "1": {
+        "g_name": "game1",
+        "c_name": "Clip11",
+        "f_start": 39,
+        "f_end": 112
+    },
+    "2": {
+        "g_name": "game1",
+        "c_name": "Clip12",
+        "f_start": 38,
+        "f_end": 111
+    },
+    "3": {
+        "g_name": "game1",
+        "c_name": "Clip13",
+        "f_start": 28,
+        "f_end": 142
+    },
+    "4": {
+        "g_name": "game1",
+        "c_name": "Clip7",
+        "f_start": 26,
+        "f_end": 256
+    },
+    "5": {
+        "g_name": "game1",
+        "c_name": "Clip7",
+        "f_start": 83,
+        "f_end": 167
+    },
+    "6": {
+        "g_name": "game2",
+        "c_name": "Clip5",
+        "f_start": 19,
+        "f_end": 188
+    },
+    "7": {
+        "g_name": "game2",
+        "c_name": "Clip2",
+        "f_start": 8,
+        "f_end": 144
+    },
+    "8": {
+        "g_name": "game3",
+        "c_name": "Clip3",
+        "f_start": 14,
+        "f_end": 291
+    },
+    "9": {
+        "g_name": "game3",
+        "c_name": "Clip1",
+        "f_start": 20,
+        "f_end": 160
+    },
+    "10": {
+        "g_name": "game3",
+        "c_name": "Clip4",
+        "f_start": 15,
+        "f_end": 220
+    },
+    "11": {
+        "g_name": "game5",
+        "c_name": "Clip4",
+        "f_start": 43,
+        "f_end": 238
+    },
+    "12": {
+        "g_name": "game5",
+        "c_name": "Clip5",
+        "f_start": 35,
+        "f_end": 103
+    },
+    "13": {
+        "g_name": "game8",
+        "c_name": "Clip7",
+        "f_start": 18,
+        "f_end": 293
+    },
+    "14": {
+        "g_name": "game8",
+        "c_name": "Clip8",
+        "f_start": 29,
+        "f_end": 292
+    },
+    "15": {
+        "g_name": "game9",
+        "c_name": "Clip2",
+        "f_start": 14,
+        "f_end": 184
+    },
+    "16": {
+        "g_name": "game10",
+        "c_name": "Clip1",
+        "f_start": 30,
+        "f_end": 147
+    },
+    "17": {
+        "g_name": "game10",
+        "c_name": "Clip6",
+        "f_start": 1,
+        "f_end": 283
+    },
+    "18": {
+        "g_name": "game10",
+        "c_name": "Clip3",
+        "f_start": 4,
+        "f_end": 122
+    },
+    "19": {
+        "g_name": "game10",
+        "c_name": "Clip7",
+        "f_start": 4,
+        "f_end": 86
+    },
+    "20": {
+        "g_name": "game10",
+        "c_name": "Clip10",
+        "f_start": 11,
+        "f_end": 133
+    }
+}

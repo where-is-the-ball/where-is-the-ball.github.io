@@ -1,11 +1,499 @@
 <!DOCTYPE html>
-<html class=" w-mod-ix">
+<html class="w-mod-ix">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style>
+			.wf-force-outline-none[tabindex="-1"]:focus {
+				outline: none;
+			}
+		</style>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <script src="./scripts/set_logo.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+		<link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
+		<script async="" src="./content/stylesheets/js"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+			crossorigin="anonymous" />
+		<script
+			src="https://code.jquery.com/jquery-3.6.2.min.js"
+			integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA="
+			crossorigin="anonymous"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
 
-</head>
+			gtag("config", "G-XB3PR2Y1TQ");
+		</script>
 
-<body>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 
-</body>
+		<!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
+		<!-- <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" /> -->
+		<link rel="stylesheet" href="./content/stylesheets/bootstrap.min.css" />
+		<link rel="stylesheet" href="./content/stylesheets/Highlight-Clean.css" />
+		<link href="./content/stylesheets/css.txt" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="./content/stylesheets/style.css" />
+
+		<script src="./scripts/set_logo.js" type="text/javascript"></script>
+
+		<title>Where Is The Ball: 3D Ball Trajectory Estimation From 2D Monocular Tracking</title>
+	</head>
+
+	<body data-new-gr-c-s-check-loaded="14.1089.0" data-gr-ext-installed="">
+		<!-- Title -->
+		<div
+			class="container-lg"
+			style="
+				max-width: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			">
+			<h1 class="text-container-title">
+				Where Is The Ball
+				<img src="content/logo/all_logo.png" alt="Lab Logo" style="height: 1.5em; margin-right: 0.5em" />
+				: 3D Ball Trajectory Estimation From 2D Monocular Tracking
+			</h1>
+		</div>
+
+		<!-- Authors + Affiliation -->
+		<div class="container" style="max-width: 700px">
+			<div class="row authors">
+				<div class="col-sm">
+					<h5 class="text-center" style="font-weight: 500">
+						<a class="text-center"> Puntawat Ponglertnapakorn </a>
+					</h5>
+				</div>
+				<div class="col-sm">
+					<h5 class="text-center" style="font-weight: 500">
+						<a class="text-center author" href="https://www.supasorn.com"> Supasorn Suwajanakorn </a>
+					</h5>
+				</div>
+			</div>
+			<div class="row affiliate">
+				<div class="col-sm">
+					<h4 class="text-center vistec">VISTEC, Thailand</h4>
+				</div>
+			</div>
+		</div>
+
+		<!-- Teaser -->
+		<div
+			class="container-lg"
+			style="display: flex; flex-direction: column; align-items: center; justify-content: center">
+			<img src="content/images/teaser.png" alt="Teaser" class="teaser-img" />
+		</div>
+
+		<!-- Released button -->
+		<div
+			class="container-lg"
+			style="display: flex; flex-direction: column; align-items: center; justify-content: center">
+			<div class="buttons" style="margin-bottom: 5px; margin-top: 10px">
+				<a class="btn btn-light mybtn" role="button" href="https://where-is-the-ball.github.io/">
+					<svg style="width: 24px; height: 24px; margin-left: -12px; margin-right: 12px" viewBox="0 0 24 24">
+						<path
+							fill="currentColor"
+							d="M16 0H8C6.9 0 6 .9 6 2V18C6 19.1 6.9 20 8 20H20C21.1 20 22 19.1 22 18V6L16 0M20 18H8V2H15V7H20V18M4 4V22H20V24H4C2.9 24 2 23.1 2 22V4H4M10 10V12H18V10H10M10 14V16H15V14H10Z"></path>
+					</svg>
+					Paper
+				</a>
+				<a
+					class="btn btn-light mybtn disabled"
+					role="button"
+					href="https://github.com/"
+					style="background-color: #f0f0f0">
+					<img
+						src="./content/logo/github-mark.png"
+						alt="GitHub Logo"
+						style="margin-right: 13px; margin-left: -10px; width: 25px" />
+					Code & Simulation (coming soon)
+				</a>
+
+				<a
+					class="btn btn-light mybtn disabled"
+					role="button"
+					href="https://where-is-the-ball.github.io/"
+					style="background-color: #f0f0f0">
+					Dataset (coming soon)
+				</a>
+			</div>
+		</div>
+
+		<!-- Content -->
+		<!-- Abstrat -->
+		<div class="container" style="max-width: 900px">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Abstract</h2>
+					<p>
+						We present a method for 3D ball trajectory estimation from a 2D tracking sequence. To overcome
+						the ambiguity in 3D from 2D estimation, we design an LSTM-based pipeline that utilizes a novel
+						canonical 3D representation that is independent of the camera's location to handle arbitrary
+						views and a series of intermediate representations that encourage crucial invariance and
+						reprojection consistency. We evaluated our method on four synthetic and three real datasets and
+						conducted extensive ablation studies on our design choices. Despite training solely on simulated
+						data, our method achieves state-of-the-art performance and can generalize to real-world
+						scenarios with multiple trajectories, opening up a range of applications in sport analysis and
+						virtual replay.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Key Distinction -->
+		<hr class="divider" />
+		<div class="container" style="max-width: 900px">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Key distinctions</h2>
+					<ol>
+						<li>
+							Tackles hard scenarios: removing or altering strong cast shadows and highlights with
+							temporal consistency.
+						</li>
+						<li>
+							Bypasses the need for <em>accurate</em> intrinsic estimation of 3D shape, albedo, or
+							lighting, yet produces realistic results.
+						</li>
+						<li>
+							Only requires 2D images to train. No need for any multiview images, relit pairs, 3D or
+							lighting ground truth!
+						</li>
+						<li>
+							Relights in a single network pass without diffusion sampling, once given pre-processed
+							input.
+						</li>
+					</ol>
+					<br />
+				</div>
+			</div>
+		</div>
+
+		<!-- Our pipeline -->
+		<hr class="divider" />
+		<div class="container" style="max-width: 900px">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Our pipeline</h2>
+					<p>
+						The general idea of our method is simple: we first encode an input image into a feature vector
+						that
+						<em>disentangles</em> the lighting information from all other information in the image, then
+						modify the lighting information in the vector and decode it. The challenge here is how to
+						disentangle it well enough that the decoding will only affect the shading and not the person’s
+						shape or identity. Our key idea is to leverage a conditional diffusion implicit model with a
+						novel conditioning technique for this task and learn the complex light interactions implicitly
+						via the DDIM trained solely on a 2D face dataset.
+					</p>
+					<p>
+						In particular, we use off-the-shelf estimators (<a href="https://deca.is.tue.mpg.de/">DECA</a>,
+						<a href="https://insightface.ai/arcface">Arcface</a>, and
+						<a href="https://github.com/ycszen/BiSeNet/blob/master/README.md">BiSeNet</a>) to encode each
+						training image into encodings of light, shape, camera, face embedding, and segmentation masks.
+						Additionally, we infer a shadow map using a novel
+						<a href="https://diffusion-face-relighting.github.io/">DiFaReli</a>-based technique, which
+						relies on <a href="https://diff-ae.github.io/">DiffAE</a>. We then train a
+						<a href="https://arxiv.org/abs/2010.02502">DDIM</a>
+						decoder conditioned on these encodings. To relight an input face image, we reverse the
+						generative process of the DDIM conditioned on the encodings of the input image to obtain xT.
+						Then, we modify the light encoding and decode xT back to a relit output.
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<img class="overview" src="./content/images/pipeline.png" style="width: 90%; max-width: 100%" />
+				</div>
+			</div>
+		</div>
+
+		<!-- Results -->
+		<hr class="divider" />
+		<div class="container" style="max-width: 900px">
+			<h2>Results</h2>
+		</div>
+
+		<!-- Visualizer -->
+		<section id="visualizer">
+			<div class="container" style="max-width: 900px">
+				<h3>Interactive 3D Visualizer</h3>
+				<p>
+					Explore the results of our method in an interactive visualizer. You can view the 3D trajectories,
+					and ground truth data for each test scenario.
+				</p>
+			</div>
+
+			<div class="container" style="max-width: 1200px">
+				<div class="visualizer-container">
+					<div class="visualizer-column">
+						<h4>Trajectory Visualizer</h4>
+						<a href="content/checkerboard.html" target="_blank" class="visualizer-link">
+							<img
+								src="content/images/checkerboard.gif"
+								alt="Trajectory Visualizer"
+								class="visualizer-img" />
+						</a>
+					</div>
+
+					<div class="visualizer-column">
+						<h4>Tennis Visualizer</h4>
+						<img src="content/images/tennis.gif" alt="Tennis Visualizer" class="visualizer-img" />
+						<div class="visualizer-links">
+							<a
+								href="content/tennis_visualizer-main/tennis_real.html?input=../trajectories/Tennis/tennis_real.json"
+								target="_blank"
+								>Tennis - Real</a
+							>
+							<a
+								href="content/tennis_visualizer-main/tennis_synthetic.html?input=../trajectories/Tennis/tennis_synthetic.json"
+								target="_blank"
+								>Tennis - Synthetic</a
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Example videos -->
+		<div class="container" style="max-width: 900px">
+			<h3>Example videos</h3>
+			We present example video results across four test scenarios, covering both real-world and synthetic
+			settings: tennis (TrackNet), mocap, football (IPL), and a single-launch test set. These results can be
+			explored in the interactive <a href="#visualizer">visualizer</a>.
+		</div>
+
+		<!-- TrackNet(Tennis)  -->
+		<div class="container" style="max-width: 900px">
+			<div class="container_label">
+				<h5 class="heading-with-logo">
+					<img src="./content/logo/tennis_logo.png" alt="Logo" class="heading-logo" />
+					TrackNet (Tennis) - Synthetic
+					<img src="./content/logo/tennis_logo.png" alt="Logo" class="heading-logo" />
+				</h5>
+				<div class="legend">
+					<div class="legend-item ours">Ours</div>
+					<div class="legend-item gt">Ground Truth</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="video_results_div">
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/tennis/tennis_syn12.mp4" type="video/mp4" />
+			</video>
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/tennis/tennis_syn21.mp4" type="video/mp4" />
+			</video>
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/tennis/tennis_syn47.mp4" type="video/mp4" />
+			</video>
+		</div>
+
+		<div class="container" style="max-width: 900px">
+			<div class="container_label">
+				<h5 class="heading-with-logo">
+					<img src="./content/logo/tennis_logo.png" alt="Logo" class="heading-logo" />
+					TrackNet (Tennis) - Real
+					<img src="./content/logo/tennis_logo.png" alt="Logo" class="heading-logo" />
+				</h5>
+				<div class="legend">
+					<div class="legend-item ours">Ours</div>
+					<div class="legend-item gt">Ground Truth</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="video_results_div">
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/tennis/tennis_real3.mp4" type="video/mp4" />
+			</video>
+
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/tennis/tennis_real36.mp4" type="video/mp4" />
+			</video>
+
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/tennis/tennis_real25.mp4" type="video/mp4" />
+			</video>
+		</div>
+
+		<div class="video_results_div">
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/tennis/tennis_real3_pts.mp4" type="video/mp4" />
+			</video>
+
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/tennis/tennis_real36_pts.mp4" type="video/mp4" />
+			</video>
+
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/tennis/tennis_real25_pts.mp4" type="video/mp4" />
+			</video>
+		</div>
+
+		<div class="container_label">
+			<h5 class="heading-with-logo">
+				<img src="./content/logo/mocap_logo.png" alt="Logo" class="heading-logo" />
+				Mocap – Synthetic
+				<img src="./content/logo/mocap_logo.png" alt="Logo" class="heading-logo" />
+			</h5>
+			<div class="legend">
+				<div class="legend-item ours">Ours</div>
+				<div class="legend-item gt">Ground Truth</div>
+			</div>
+		</div>
+		<!-- </div> -->
+
+		<div class="video_results_div">
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/mocap/mocap_syn1.mp4" type="video/mp4" />
+			</video>
+
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/mocap/mocap_syn2.mp4" type="video/mp4" />
+			</video>
+
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/mocap/mocap_syn8.mp4" type="video/mp4" />
+			</video>
+		</div>
+		<div class="container" style="max-width: 900px">
+			<div class="container_label">
+				<h5 class="heading-with-logo">
+					<img src="./content/logo/mocap_logo.png" alt="Logo" class="heading-logo" />
+					Mocap – Real
+					<img src="./content/logo/mocap_logo.png" alt="Logo" class="heading-logo" />
+				</h5>
+				<div class="legend">
+					<div class="legend-item ours">Ours</div>
+					<div class="legend-item gt">Ground Truth</div>
+				</div>
+			</div>
+		</div>
+		<div class="video_results_div">
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/mocap/mocap_real0.mp4" type="video/mp4" />
+			</video>
+
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/mocap/mocap_real31.mp4" type="video/mp4" />
+			</video>
+
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/mocap/mocap_real68.mp4" type="video/mp4" />
+			</video>
+		</div>
+
+		<!-- IPL -->
+		<div class="container" style="max-width: 900px">
+			<div class="container_label">
+				<h5 class="heading-with-logo">
+					<img src="./content/logo/football_logo.png" alt="Logo" class="heading-logo" />
+					IPL (Soccer) - Synthetic
+					<img src="./content/logo/football_logo.png" alt="Logo" class="heading-logo" />
+				</h5>
+				<div class="legend">
+					<div class="legend-item ours">Ours</div>
+					<div class="legend-item gt">Ground Truth</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="video_results_div">
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/ipl/ipl_syn0.mp4" type="video/mp4" />
+			</video>
+
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/ipl/ipl_syn20.mp4" type="video/mp4" />
+			</video>
+
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/ipl/ipl_syn34.mp4" type="video/mp4" />
+			</video>
+		</div>
+
+		<div class="container" style="max-width: 900px">
+			<div class="container_label">
+				<h5 class="heading-with-logo">
+					<img src="./content/logo/football_logo.png" alt="Logo" class="heading-logo" />
+					IPL (Soccer) - Real
+					<img src="./content/logo/football_logo.png" alt="Logo" class="heading-logo" />
+				</h5>
+				<div class="legend">
+					<div class="legend-item ours">Ours</div>
+					<div class="legend-item gt">Ground Truth</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="video_results_div">
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/ipl/ipl_real1.mp4" type="video/mp4" />
+			</video>
+
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/ipl/ipl_real4.mp4" type="video/mp4" />
+			</video>
+
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/ipl/ipl_real6.mp4" type="video/mp4" />
+			</video>
+		</div>
+
+		<div class="container" style="max-width: 900px">
+			<div class="container_label">
+				<h5 class="heading-with-logo">
+					<img src="./content/logo/sim_logo.png" alt="Logo" class="heading-logo" />
+					Comparison to SOTA – Synthetic Single-Launch Trajectory
+					<img src="./content/logo/sim_logo.png" alt="Logo" class="heading-logo" />
+				</h5>
+				<div class="legend">
+					<div class="legend-item ours">Ours</div>
+					<div class="legend-item gt">Ground Truth</div>
+					<div class="legend-item sota">Prior Work</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="video_results_div">
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/sota/mocanu_clean.mp4" type="video/mp4" />
+			</video>
+
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/sota/shen_clean.mp4" type="video/mp4" />
+			</video>
+
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/sota/ours_clean.mp4" type="video/mp4" />
+			</video>
+		</div>
+
+		<div class="video_results_div">
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/sota/mocanu_5sd.mp4" type="video/mp4" />
+			</video>
+
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/sota/shen_5sd.mp4" type="video/mp4" />
+			</video>
+
+			<video class="video_results" controls playsinline autoplay muted loop>
+				<source src="content/videos/sota/ours_5sd.mp4" type="video/mp4" />
+			</video>
+		</div>
+	</body>
+</html>

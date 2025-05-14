@@ -1,0 +1,50 @@
+body { 
+  margin: 0; 
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  background: #e6e6e6; 
+} 
+#slider {
+  background-color: #DDDDDD;
+  border-radius: 3px;
+}
+.knob {
+  width: 10px;
+  height: 15px;
+  background-color: #686868;
+  position: absolute;
+  cursor:col-resize; 
+  z-index: 10;
+}
+#slider_left {
+  left: 0px;
+}
+#slider_right {
+  left: 20px;
+}
+#slider_key {
+  left: 5px;
+  width: 10px;
+  height: 25px;
+  background-color: #b13200;
+  position: absolute;
+  cursor:ew-resize; 
+  z-index: 9;
+}
+#slider_band {
+  position: absolute;
+  height: 10px;
+  width: 100%;
+  cursor: ew-resize;
+  background-color: #c6c6c6;
+}
+.tip {
+  position: absolute;
+  left: -14px;
+  top: -15px;
+  width: 30px;
+  padding: 2px 4px;
+  font-size: 10px;
+  text-align: center;
+  font-weight: bold;
+  color: #333333;
+}
