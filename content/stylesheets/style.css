@@ -86,7 +86,7 @@ ol {
 }
 
 hr.divider {
-	max-width: 1500px;
+	max-width: 1200px;
 	margin-top: 16px;
 	margin-bottom: 16;
 	border-top: 2px solid rgba(0, 0, 0, 0.1);
@@ -357,4 +357,33 @@ pre.citation {
 	color: #000; /* black—can also use currentColor to inherit from parent */
 	display: inline-block;
 	vertical-align: middle;
+}
+
+.scroll-container:hover .scroll-track {
+	animation-play-state: paused;
+}
+
+.scroll-container {
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.scroll-track {
+	display: flex;
+	width: max-content;
+	animation: scroll 20s linear infinite;
+}
+
+.scroll-track img {
+	height: 170px; /* Adjust as needed */
+}
+
+@keyframes scroll {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
 }
