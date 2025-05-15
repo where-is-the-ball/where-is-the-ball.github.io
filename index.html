@@ -106,7 +106,15 @@
 			style="display: flex; flex-direction: column; align-items: center; justify-content: center">
 			<div class="buttons" style="margin-bottom: 5px; margin-top: 10px">
 				<a class="btn btn-light mybtn" role="button" href="https://where-is-the-ball.github.io/">
-					<svg style="width: 24px; height: 24px; margin-left: -12px; margin-right: 12px" viewBox="0 0 24 24">
+					<svg
+						style="
+							width: 24px;
+							height: 24px;
+							margin-left: -12px;
+							margin-right: 12px;
+							vertical-align: middle;
+						"
+						viewBox="0 0 24 24">
 						<path
 							fill="currentColor"
 							d="M16 0H8C6.9 0 6 .9 6 2V18C6 19.1 6.9 20 8 20H20C21.1 20 22 19.1 22 18V6L16 0M20 18H8V2H15V7H20V18M4 4V22H20V24H4C2.9 24 2 23.1 2 22V4H4M10 10V12H18V10H10M10 14V16H15V14H10Z"></path>
@@ -121,7 +129,7 @@
 					<img
 						src="./content/logo/github-mark.png"
 						alt="GitHub Logo"
-						style="margin-right: 13px; margin-left: -10px; width: 25px" />
+						style="margin-right: 13px; margin-left: -10px; width: 25px; vertical-align: middle" />
 					Code & Simulation (coming soon)
 				</a>
 
@@ -130,7 +138,25 @@
 					role="button"
 					href="https://where-is-the-ball.github.io/"
 					style="background-color: #f0f0f0">
+					<svg
+						class="icon-dataset"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 448 512"
+						aria-hidden="true"
+						style="margin-right: 13px; margin-left: -10px; width: 20px; vertical-align: middle">
+						<path
+							d="M 448 73.143 v 45.714 C 448 159.143 347.667 192 224 192 S 0 159.143 0 118.857 V 73.143 C 0 32.857 100.333 0 224 0 s 224 32.857 224 73.143 Z       						M 448 176 v 102.857 C 448 319.143 347.667 352 224 352 S 0 319.143 0 278.857 V 176 c 48.125 33.143 136.208 48.572 224 48.572 S 399.874 209.143 448 176 Zm 0 160 v 102.857 C 448 479.143 347.667 512 224 512 S 0 479.143 0 438.857 V 336 c 48.125 33.143 136.208 48.572 224 48.572 S 399.874 369.143 448 336 Z"
+							fill="currentColor" />
+					</svg>
 					Dataset (coming soon)
+				</a>
+
+				<a class="btn btn-light mybtn" role="button" href="#visualizer" style="background-color: #f0f0f0">
+					<img
+						src="./content/logo/visualizer_logo.png"
+						alt="GitHub Logo"
+						style="margin-right: 13px; margin-left: -10px; width: 25px; vertical-align: middle" />
+					Visualizer
 				</a>
 			</div>
 		</div>
@@ -163,10 +189,22 @@
 				<div class="col-md-12">
 					<h2>Key distinctions</h2>
 					<ol>
-						<li>TBD</li>
-						<li>TBD</li>
-						<li>TBD</li>
-						<li>TBD</li>
+						<li>
+							Canonical plane-point representation enables multi-view training and inference within a
+							single network.
+						</li>
+						<li>
+							Only trained on simulations, generalizes to the real world &mdash; no real 3D or multi-view
+							supervision!
+						</li>
+						<li>
+							Enforces reprojection consistency by predicting height instead of regressing full 3D
+							coordinates.
+						</li>
+						<li>
+							Relative-absolute input encoding is designed to better generalize to spatial shifts and
+							achieve location invariance.
+						</li>
 					</ol>
 					<br />
 				</div>
@@ -179,30 +217,32 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h2>Our pipeline</h2>
-					TBD
 					<p>
-						<!-- The general idea of our method is simple: we first encode an input image into a feature vector
-						that
-						<em>disentangles</em> the lighting information from all other information in the image, then
-						modify the lighting information in the vector and decode it. The challenge here is how to
-						disentangle it well enough that the decoding will only affect the shading and not the person’s
-						shape or identity. Our key idea is to leverage a conditional diffusion implicit model with a
-						novel conditioning technique for this task and learn the complex light interactions implicitly
-						via the DDIM trained solely on a 2D face dataset.
+						Our goal is to recover the 3D trajectory of a ball from a sequence of 2D tracked positions. A
+						naive approach would be to directly regress 3D coordinates from the 2D observations, but this is
+						often unreliable due to sensitivity to camera parameters like focal length and viewpoint. To
+						address this, we transform each 2D input into a plane-point representation that removes
+						dependency on the camera setup, allowing us to train on multiple cameras and perform inference
+						within a single network.. Instead of predicting full 3D coordinates, we estimate the ball’s
+						height over time to ensure reprojection consistency with the original 2D observations. We also
+						introduce a relative-absolute input encoding, which improves generalization to spatial shifts
+						and helps the model achieve location invariance.
+
+						<!-- Given a tracking sequence of 2D ball positions, we estimates the 3D ball position for each
+						timesteps. Instead of directly regressing a 3D ball position from 2D, we first reparameterize
+						the 2D ball pixel position with a plane-point representation. This representation help is as
+						independent from the cameras parameters thus allowing us to train on multiple cameras and
+						inference within a single network. Moreover, we choose to predict the height of the ball instead
+						of 3D location to enforce the repreojection consistent with its 2D pixelo observation. We also
+						design a relative-absolute input encoding to better generalize to spatial shifts and achieve
+						location invariance. -->
 					</p>
 					<p>
-						In particular, we use off-the-shelf estimators (<a href="https://deca.is.tue.mpg.de/">DECA</a>,
-						<a href="https://insightface.ai/arcface">Arcface</a>, and
-						<a href="https://github.com/ycszen/BiSeNet/blob/master/README.md">BiSeNet</a>) to encode each
-						training image into encodings of light, shape, camera, face embedding, and segmentation masks.
-						Additionally, we infer a shadow map using a novel
-						<a href="https://diffusion-face-relighting.github.io/">DiFaReli</a>-based technique, which
-						relies on <a href="https://diff-ae.github.io/">DiffAE</a>. We then train a
-						<a href="https://arxiv.org/abs/2010.02502">DDIM</a>
-						decoder conditioned on these encodings. To relight an input face image, we reverse the
-						generative process of the DDIM conditioned on the encodings of the input image to obtain xT.
-						Then, we modify the light encoding and decode xT back to a relit output.
-					</p> -->
+						Our pipeline consists of three main LSTM-based components: 1. End-of-Trajectory (EoT) Network,
+						which predicts whether the ball is ending its current motion or changing direction (e.g., after
+						a player’s hit); 2. Height Network, which estimates the ball’s height over time, later used to
+						reconstruct the full 3D trajectory; and 3. Refinement Network, which further adjusts the
+						predicted 3D coordinates for improved accuracy and smoothness.
 					</p>
 				</div>
 			</div>
@@ -546,7 +586,7 @@
 					<!-- your note above the code box -->
 					<p class="citation-note">
 						(Note: This work has been accepted to CVSports 2025 and will appear in the proceedings. In the
-						meantime, please cite this project page.)
+						meantime, please cite this page.)
 					</p>
 					<code>
 						@misc{ponglertnapakorn2025whereistheball, <br />

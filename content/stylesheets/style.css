@@ -352,3 +352,9 @@ pre.citation {
 	padding: 1em;
 	overflow-x: auto;
 }
+/* CSS to size & color it */
+.icon-dataset {
+	color: #000; /* black—can also use currentColor to inherit from parent */
+	display: inline-block;
+	vertical-align: middle;
+}
