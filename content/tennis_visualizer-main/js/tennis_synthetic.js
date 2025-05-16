@@ -158,6 +158,20 @@ function customAddTrajectory() {
   setupSlider(data[config.traj_id]["pred_refined"].length, sliderOnChange);
 }
 
+function exportCurrentCamera() {
+  const camState = {
+    position: camera.position.toArray(),
+    quaternion: camera.quaternion.toArray(),
+    fov: camera.fov,
+  };
+  // e.g. download as a file
+  const blob = new Blob([JSON.stringify(camState, null,2)],{type:'application/json'});
+  const url  = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = './cameraState.json';
+  a.click();
+}
+
 function setupGUI() {
   const gui = new dat.GUI({width: 350});
   
@@ -176,7 +190,8 @@ function setupGUI() {
     },
     copycam: function() {
       console.log(controls.target.x);
-      console.log(camera.position.x);
+      console.log("[#] Cam pose: " + camera.position.x);
+      exportCurrentCamera();
 
       let str = "camera=" + camera.position.x + "," + camera.position.y + "," + camera.position.z + "," + controls.target.x + "," + controls.target.y + "," + controls.target.z;
       navigator.clipboard.writeText(str);
@@ -309,14 +324,6 @@ function setupScene(scene, f, center) {
   drawCourt(scene);
   updateCourtColorSynthetic(scene)
   customAddTrajectory();
-
-  // clip_start = clipdat[config.traj_id]["f_start"];
-  //const end = clipdat[config.traj_id]["f_end"];
-  //clips = new Array(end - start + 1);
-  //for (let i = start; i <= end; i++) {
-    //clips[i - start] = new Image();
-    //clips[i - start].src = "./clips/1/f" + i + "_track.jpg";
-  //}
 }
 
 Number.prototype.pad = function(size) {

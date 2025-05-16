@@ -149,8 +149,8 @@ function sliderOnChange(min, max, key) {
   ball.position.addScaledVector(traj.children[key].position, 1);
 
   const cd = clipdat[config.traj_id]
-  // $("#imgclip").attr("src", "./clips/" + cd.g_name + "/" + cd.c_name + "/" + (key + cd.f_start).pad(4) + ".jpg" );
-  $("#imgclip").attr("src", "./clips_webp/" + cd.g_name + "/" + cd.c_name + "/" + (key + cd.f_start).pad(4) + ".webp" );
+  $("#imgclip").attr("src", "./clips/" + cd.g_name + "/" + cd.c_name + "/" + (key + cd.f_start).pad(4) + ".jpg" );
+  // $("#imgclip").attr("src", "./clips_webp/" + cd.g_name + "/" + cd.c_name + "/" + (key + cd.f_start).pad(4) + ".webp" );
 }
 
 function customAddTrajectory() {
@@ -158,6 +158,48 @@ function customAddTrajectory() {
   const unline = unlineColoring;
   addTrajectory(data[config.traj_id], ballColoring, lineColoring, null, null, unColoring, unline);
   setupSlider(data[config.traj_id]["pred_refined"].length, sliderOnChange);
+}
+
+function exportCurrentCamera() {
+  const camState = {
+    position: camera.position.toArray(),
+    quaternion: camera.quaternion.toArray(),
+    fov: camera.fov,
+  };
+  // e.g. download as a file
+  const blob = new Blob([JSON.stringify(camState, null,2)],{type:'application/json'});
+  const url  = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = './cameraState.json';
+  a.click();
+}
+
+async function loadCameraState() {
+  const jsonString = `{
+  "position": [
+    2.650351953091617,
+    2.4648513812753254,
+    -11.68314118627384
+  ],
+  "quaternion": [
+    -0.0029078199292130406,
+    0.9969670688670852,
+    0.04651118445513188,
+    0.06232910955895801
+  ],
+  "fov": 22.27746544854386
+}`;
+  // parse & apply:
+  const preset = JSON.parse(jsonString);
+  const position = preset.position;
+  const quaternion = preset.quaternion;
+  const fov = preset.fov;
+  console.log("Loading camera state...");
+  console.log(preset);
+  camera.position.fromArray(position);
+  camera.quaternion.fromArray(quaternion);
+  camera.fov = fov;
+  camera.updateProjectionMatrix();
 }
 
 function setupGUI() {
@@ -178,13 +220,22 @@ function setupGUI() {
     },
     copycam: function() {
       console.log(controls.target.x);
-      console.log(camera.position.x);
+      console.log("[#] Cam pos: " + camera.position.x);
+      exportCurrentCamera();
 
       let str = "camera=" + camera.position.x + "," + camera.position.y + "," + camera.position.z + "," + controls.target.x + "," + controls.target.y + "," + controls.target.z;
       navigator.clipboard.writeText(str);
     }
   };
   gui.add(props,'courtview').name('Match Input View');
+
+  var props2 = {
+    loadview: function() {
+      console.log("[#] Load camera state...");
+      loadCameraState();
+    }
+  };
+  gui.add(props2,'loadview').name('Load Camera State');
 
 
   folder_traj.add(config, 'showall').name('Show Prediction Points').listen().onChange( function(value) { 
@@ -322,31 +373,9 @@ Number.prototype.pad = function(size) {
 
 readData(function () {
   $(document).ready(function() {
-    // const f = data[0]['I'][0][1][1];
-
-    // // xyz(opengl) -> E_unity -> xyz(unity) -> K_unity -> uv(unity)
-    // const E = data[0]['E'][0];
-    // const m = new THREE.Matrix4();
-    // const r = new THREE.Matrix4();
-    // const t = new THREE.Vector4(E[0][3], E[1][3], E[2][3], 1);
-    // console.log("E", E);
-    // m.fromArray(E.flat());
-    // m.transpose();
-    // r.extractRotation(m);
-    // r.transpose();
-    // t.applyMatrix4(r);
-    // t.multiplyScalar(-1);
-    // t.z *= -1;
-
     const f = 5.07886648178100;
     const t = new THREE.Vector4(0.06362732851167613, 8.594541269434785, 32.8437588435118, 1);
  
-
-
-    //lookat = new THREE.Vector3(E[2][0], E[2][1], E[2][2]);
-    //lookat.z *= -1;
-    //lookat.addScaledVector(t, 1);
-    
     lookat = new THREE.Vector3(0, 0, 0);
 
     if (camInit != 0 && camInit != null) {
@@ -364,12 +393,8 @@ readData(function () {
       }
     }
 
-    //console.log("her");
-    //console.log(data[0]["pred_refined"][0], data[1]["pred_refined"][0]);
     scene = new THREE.Scene();
     setupGUI();
-    //scene.background = new THREE.Color( 0x999999 );
-    //scene.fog = new THREE.FogExp2( 0xcccccc, 0.01 );
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -414,7 +439,6 @@ readData(function () {
         anim += clock.getDelta() * config.speed;
 
         const FPS = 30.0;
-        //const duration = (traj.children.length - 1) / FPS;
         const duration = (maxframe - minframe) / FPS;
         if (duration > 0) 
           while (anim >= duration) 
@@ -428,8 +452,8 @@ readData(function () {
         
         setKeyframe(id0);
         const cd = clipdat[config.traj_id]
-        // $("#imgclip").attr("src", "./clips/" + cd.g_name + "/" + cd.c_name + "/" + (id0 + cd.f_start).pad(4) + ".jpg" );
-        $("#imgclip").attr("src", "./clips_webp/" + cd.g_name + "/" + cd.c_name + "/" + (id0 + cd.f_start).pad(4) + ".webp" );
+        $("#imgclip").attr("src", "./clips/" + cd.g_name + "/" + cd.c_name + "/" + (id0 + cd.f_start).pad(4) + ".jpg" );
+        // $("#imgclip").attr("src", "./clips_webp/" + cd.g_name + "/" + cd.c_name + "/" + (id0 + cd.f_start).pad(4) + ".webp" );
 
         ball.position.set(0, 0, 0);
         ball.position.addScaledVector(traj.children[id0].position, id1 - id);
