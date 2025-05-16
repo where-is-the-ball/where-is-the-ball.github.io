@@ -244,6 +244,7 @@ function setupGUI() {
       console.log("[#] Cam pos: " + camera.position.x);
 
       let str = "camera=" + camera.position.x + "," + camera.position.y + "," + camera.position.z + "," + controls.target.x + "," + controls.target.y + "," + controls.target.z;
+      console.log(str);
       navigator.clipboard.writeText(str);
     }
   };

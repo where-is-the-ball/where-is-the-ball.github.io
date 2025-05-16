@@ -365,6 +365,7 @@ pre.citation {
 
 .scroll-container {
 	width: 100%;
+	height: auto;
 	overflow: hidden;
 	position: relative;
 }
