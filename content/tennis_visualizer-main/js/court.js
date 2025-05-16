@@ -162,6 +162,11 @@ function drawCourt(scene) {
 
 }
 
+function updateCourtColorSynthetic(scene) {
+    drawCenteredRect(scene, 30, 40, -0.011, 0x844743); // Outer court
+    drawCenteredRect(scene, w1*2, h1*2, -0.01, 0x2f634c);  // Inner court
+}
+
 function updateCourtColor(scene, tid) {
   if  (tid > 0 && tid < 6) {
     console.log("TID (1-5)");

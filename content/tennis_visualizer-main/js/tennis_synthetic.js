@@ -307,6 +307,7 @@ function setupScene(scene, f, center) {
   scene.add( ambientLight );
 
   drawCourt(scene);
+  updateCourtColorSynthetic(scene)
   customAddTrajectory();
 
   // clip_start = clipdat[config.traj_id]["f_start"];
