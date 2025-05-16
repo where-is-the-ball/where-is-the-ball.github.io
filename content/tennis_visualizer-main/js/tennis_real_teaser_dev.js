@@ -150,7 +150,6 @@ function sliderOnChange(min, max, key) {
 
   const cd = clipdat[config.traj_id]
   $("#imgclip").attr("src", "./clips/" + cd.g_name + "/" + cd.c_name + "/" + (key + cd.f_start).pad(4) + ".jpg" );
-  // $("#imgclip").attr("src", "./clips_webp/" + cd.g_name + "/" + cd.c_name + "/" + (key + cd.f_start).pad(4) + ".webp" );
 }
 
 function customAddTrajectory() {
@@ -430,7 +429,6 @@ readData(function () {
         setKeyframe(id0);
         const cd = clipdat[config.traj_id]
         $("#imgclip").attr("src", "./clips/" + cd.g_name + "/" + cd.c_name + "/" + (id0 + cd.f_start).pad(4) + ".jpg" );
-        // $("#imgclip").attr("src", "./clips_webp/" + cd.g_name + "/" + cd.c_name + "/" + (id0 + cd.f_start).pad(4) + ".webp" );
 
         ball.position.set(0, 0, 0);
         ball.position.addScaledVector(traj.children[id0].position, id1 - id);

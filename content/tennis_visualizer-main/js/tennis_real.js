@@ -150,7 +150,6 @@ function sliderOnChange(min, max, key) {
 
   const cd = clipdat[config.traj_id]
   $("#imgclip").attr("src", "./clips/" + cd.g_name + "/" + cd.c_name + "/" + (key + cd.f_start).pad(4) + ".jpg" );
-  // $("#imgclip").attr("src", "./clips_webp/" + cd.g_name + "/" + cd.c_name + "/" + (key + cd.f_start).pad(4) + ".webp" );
 }
 
 function customAddTrajectory() {
@@ -169,23 +168,6 @@ function setupGUI() {
     console.log("Showing trajectory ", config.traj_id);
     customAddTrajectory();
   });
-
-  var props = {
-    courtview: function() {
-      camera.position.set(helper_camera.position.x, helper_camera.position.y, helper_camera.position.z);
-      controls.target.set(lookat.x, lookat.y, lookat.z);
-      controls.update();
-    },
-    copycam: function() {
-      console.log(controls.target.x);
-      console.log("[#] Cam pos: " + camera.position.x);
-      exportCurrentCamera();
-
-      let str = "camera=" + camera.position.x + "," + camera.position.y + "," + camera.position.z + "," + controls.target.x + "," + controls.target.y + "," + controls.target.z;
-      navigator.clipboard.writeText(str);
-    }
-  };
-  gui.add(props,'courtview').name('Match Input View');
 
   folder_traj.add(config, 'showall').name('Show Prediction Points').listen().onChange( function(value) { 
     for (let i = 0; i < traj.children.length; i++) {
@@ -250,11 +232,24 @@ function setupGUI() {
   } );
 
   folder_traj.open();
-  //folder_render.open();
-  //dirlightFolder.open();
-  //
+
+  var cam_tools = {
+    courtview: function() {
+      camera.position.set(helper_camera.position.x, helper_camera.position.y, helper_camera.position.z);
+      controls.target.set(lookat.x, lookat.y, lookat.z);
+      controls.update();
+    },
+    copycam: function() {
+      console.log(controls.target.x);
+      console.log("[#] Cam pos: " + camera.position.x);
+
+      let str = "camera=" + camera.position.x + "," + camera.position.y + "," + camera.position.z + "," + controls.target.x + "," + controls.target.y + "," + controls.target.z;
+      navigator.clipboard.writeText(str);
+    }
+  };
   const folder_debug = gui.addFolder('Developer Tools');
-  folder_debug.add(props,'copycam').name('Copy camera params');
+  folder_debug.add(cam_tools,'copycam').name('Copy camera params');
+  folder_debug.add(cam_tools,'courtview').name('Reset camera view');
 
 }
 
@@ -402,7 +397,6 @@ readData(function () {
         setKeyframe(id0);
         const cd = clipdat[config.traj_id]
         $("#imgclip").attr("src", "./clips/" + cd.g_name + "/" + cd.c_name + "/" + (id0 + cd.f_start).pad(4) + ".jpg" );
-        // $("#imgclip").attr("src", "./clips_webp/" + cd.g_name + "/" + cd.c_name + "/" + (id0 + cd.f_start).pad(4) + ".webp" );
 
         ball.position.set(0, 0, 0);
         ball.position.addScaledVector(traj.children[id0].position, id1 - id);
