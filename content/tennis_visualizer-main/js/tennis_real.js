@@ -160,48 +160,6 @@ function customAddTrajectory() {
   setupSlider(data[config.traj_id]["pred_refined"].length, sliderOnChange);
 }
 
-function exportCurrentCamera() {
-  const camState = {
-    position: camera.position.toArray(),
-    quaternion: camera.quaternion.toArray(),
-    fov: camera.fov,
-  };
-  // e.g. download as a file
-  const blob = new Blob([JSON.stringify(camState, null,2)],{type:'application/json'});
-  const url  = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = './cameraState.json';
-  a.click();
-}
-
-async function loadCameraState() {
-  const jsonString = `{
-  "position": [
-    2.650351953091617,
-    2.4648513812753254,
-    -11.68314118627384
-  ],
-  "quaternion": [
-    -0.0029078199292130406,
-    0.9969670688670852,
-    0.04651118445513188,
-    0.06232910955895801
-  ],
-  "fov": 22.27746544854386
-}`;
-  // parse & apply:
-  const preset = JSON.parse(jsonString);
-  const position = preset.position;
-  const quaternion = preset.quaternion;
-  const fov = preset.fov;
-  console.log("Loading camera state...");
-  console.log(preset);
-  camera.position.fromArray(position);
-  camera.quaternion.fromArray(quaternion);
-  camera.fov = fov;
-  camera.updateProjectionMatrix();
-}
-
 function setupGUI() {
   const gui = new dat.GUI({width: 350});
   
@@ -228,15 +186,6 @@ function setupGUI() {
     }
   };
   gui.add(props,'courtview').name('Match Input View');
-
-  var props2 = {
-    loadview: function() {
-      console.log("[#] Load camera state...");
-      loadCameraState();
-    }
-  };
-  gui.add(props2,'loadview').name('Load Camera State');
-
 
   folder_traj.add(config, 'showall').name('Show Prediction Points').listen().onChange( function(value) { 
     for (let i = 0; i < traj.children.length; i++) {
