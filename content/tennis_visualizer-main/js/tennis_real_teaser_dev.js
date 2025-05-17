@@ -29,7 +29,7 @@ const config = {
 	showunline: false,
 	speed: 1,
 	drawtail: 10,
-	traj_id: 0,
+	traj_id: 11,
 	ballsize: 0.1,
 	tballsize: 0.07,
 	animate: true,
@@ -103,6 +103,16 @@ const cameraPresets = {
 		position: [4.608254385709, 2.468294019808, 8.360426262952],
 		quaternion: [-0.059453852317, 0.218891007049, 0.013363439154, 0.973844641086],
 		fov: 22.277465448544,
+	},
+	closeup_net_tid14: {
+		position: [6.115837024931, 2.844328437205, -6.755026579861],
+		quaternion: [-0.023340865563, 0.965885327077, 0.093842793181, 0.240237942672],
+		fov: 22.277465448544,
+	},
+	closeup_net_tid11: {
+        position: [-6.521441715079, 2.651505639260, 8.095461348983],
+        quaternion: [-0.053961108143, -0.275038858689, -0.015463126611, 0.959793059328],
+        fov: 22.277465448544,
 	},
 };
 
@@ -236,7 +246,7 @@ function setupGUI() {
       },`;
 
 			console.log(preset);
-			navigator.clipboard.writeText(str);
+			// navigator.clipboard.writeText(str);
 		},
 	};
 	gui.add(props, "courtview").name("Match Input View");
@@ -444,6 +454,7 @@ readData(function () {
 		}
 
 		setupScene(scene, f, t);
+		updateCourtColor(scene, config.traj_id);
 
 		setSize();
 		controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -466,40 +477,90 @@ readData(function () {
 				updateCourtColor(scene, config.traj_id);
 			}
 		});
-
+		let slowMoTriggered = false;
 		renderer.setAnimationLoop(function (time) {
 			const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
 			TWEEN.update(time);
-
 			if (config.animate) {
-				anim += clock.getDelta() * config.speed;
+				// anim += clock.getDelta() * config.speed;
 
+				// const FPS = 30.0;
+				// const duration = (maxframe - minframe) / FPS;
+				// if (duration > 0) while (anim >= duration) anim -= duration;
+				// else anim = 0;
+
+				// let id = anim * FPS + minframe; // Frame-id
+				// let id0 = Math.floor(id);
+				// let id1 = id0 + 1;
+
+				// if (id0 >= 200 && id0 < 241 && config.traj_id == 14) {
+				// 	transitionToPreset("closeup_net_tid14", 1500); // duration in ms
+				// 	config.speed = 0.5;
+				// } else {
+				// 	config.speed = 1;
+				// }
+				// setKeyframe(id0);
+				// const cd = clipdat[config.traj_id];
+				// $("#imgclip").attr(
+				// 	"src",
+				// 	"./clips/" + cd.g_name + "/" + cd.c_name + "/" + (id0 + cd.f_start).pad(4) + ".jpg"
+				// );
+
+				// ball.position.set(0, 0, 0);
+				// ball.position.addScaledVector(traj.children[id0].position, id1 - id);
+				// ball.position.addScaledVector(traj.children[id1].position, id - id0);
+
+				// if (config.drawtail > 0) {
+				// 	addTail2(id1, ball, id - id0);
+				// }
+
+				// 2) grab frame‐based variables
+				const rawDt = clock.getDelta(); // in seconds
 				const FPS = 30.0;
 				const duration = (maxframe - minframe) / FPS;
-				if (duration > 0) while (anim >= duration) anim -= duration;
-				else anim = 0;
 
-				let id = anim * FPS + minframe; // Frame-id
-				let id0 = Math.floor(id);
+				// compute your current frame id BEFORE you advance `anim`
+				let frame = anim * FPS + minframe;
+				let id0 = Math.floor(frame);
 				let id1 = id0 + 1;
 
-				if (id0 == 50) {
-					transitionToPreset("closeup_net", 1500); // duration in ms
+				// 3) decide slow-mo factor & one-time camera trigger
+				let trajSpeed = 1.0;
+
+				if (id0 >= 15 && id0 <= 43 && config.traj_id === 11) {
+					trajSpeed = 0.25; // 50% speed for trajectory only
+					console.log("slowmo");
+
+					if (!slowMoTriggered) {
+						slowMoTriggered = true; // don’t retrigger
+						transitionToPreset("closeup_net_tid11", 1500);
+					}
 				}
 
+				// 4) advance your animation by slowed dt
+				anim += rawDt * config.speed * trajSpeed;
+
+				// wrap anim
+				if (duration > 0) {
+					while (anim >= duration) anim -= duration;
+				} else {
+					anim = 0;
+				}
+
+				// 5) your existing keyframe + ball logic
 				setKeyframe(id0);
 				const cd = clipdat[config.traj_id];
 				$("#imgclip").attr(
 					"src",
-					"./clips/" + cd.g_name + "/" + cd.c_name + "/" + (id0 + cd.f_start).pad(4) + ".jpg"
+					`./clips/${cd.g_name}/${cd.c_name}/${String(id0 + cd.f_start).padStart(4, "0")}.jpg`
 				);
 
 				ball.position.set(0, 0, 0);
-				ball.position.addScaledVector(traj.children[id0].position, id1 - id);
-				ball.position.addScaledVector(traj.children[id1].position, id - id0);
+				ball.position.addScaledVector(traj.children[id0].position, id1 - frame);
+				ball.position.addScaledVector(traj.children[id1].position, frame - id0);
 
 				if (config.drawtail > 0) {
-					addTail2(id1, ball, id - id0);
+					addTail2(id1, ball, frame - id0);
 				}
 			}
 
