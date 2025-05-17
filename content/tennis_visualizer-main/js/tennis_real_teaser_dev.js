@@ -19,6 +19,9 @@ var traj, traj_line;
 var clips;
 var clip_start;
 
+var showAllController;
+var showLineController;
+
 const config = {
 	dirlightRadius: 5,
 	dirlightSamples: 16,
@@ -251,7 +254,7 @@ function setupGUI() {
 	};
 	gui.add(props, "courtview").name("Match Input View");
 
-	folder_traj
+	showAllController = folder_traj
 		.add(config, "showall")
 		.name("Show Prediction Points")
 		.listen()
@@ -260,7 +263,7 @@ function setupGUI() {
 				traj.children[i].visible = value && i >= min && i <= max;
 			}
 		});
-	folder_traj
+	showLineController = folder_traj
 		.add(config, "showline")
 		.name("Show Lines")
 		.listen()
@@ -529,6 +532,10 @@ readData(function () {
 
 				if (id0 >= 15 && id0 <= 43 && config.traj_id === 11) {
 					trajSpeed = 0.25; // 50% speed for trajectory only
+          // config.showall = false;
+          // config.showline = false;
+          showAllController.setValue(false);
+          showLineController.setValue(false);
 					console.log("slowmo");
 
 					if (!slowMoTriggered) {
