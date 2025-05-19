@@ -119,6 +119,7 @@
 				src="content/images/fig_ow.png"
 				alt="overview teaser"
 				class="teaser-img"
+				loading="eager"
 				style="max-width: 50%; height: auto; border-radius: 8px" />
 
 			<!-- Right: Video -->
@@ -128,6 +129,7 @@
 				autoplay
 				muted
 				loop
+				loading="eager"
 				style="max-width: 61%; height: auto; border-radius: 8px">
 				<source src="content/images/tennis_web_teaser.mp4" type="video/mp4" />
 			</video>
@@ -139,10 +141,10 @@
 			<div class="scroll-container">
 				<div class="scroll-track">
 					<!-- duplicate the single wide image -->
-					<img src="./content/images/teaser_1.png" alt="Grid" />
-					<img src="./content/images/teaser_2.png" alt="Grid" />
-					<img src="./content/images/teaser_1.png" alt="Grid Duplicate" />
-					<img src="./content/images/teaser_2.png" alt="Grid Duplicate" />
+					<img loading="eager" src="./content/images/teaser_1.png" alt="Grid" />
+					<img loading="eager" src="./content/images/teaser_2.png" alt="Grid" />
+					<img loading="eager" src="./content/images/teaser_1.png" alt="Grid Duplicate" />
+					<img loading="eager" src="./content/images/teaser_2.png" alt="Grid Duplicate" />
 				</div>
 			</div>
 		</div>
@@ -351,6 +353,7 @@
 						<div class="thumb">
 							<a href="content/checkerboard.html" target="_blank">
 								<img
+									loading="lazy"
 									src="content/images/checkerboard.gif"
 									alt="Trajectory Visualizer"
 									class="thumb-img-trajectory" />
@@ -373,6 +376,7 @@
 								href="content/tennis_visualizer-main/tennis_real.html?input=../trajectories/Tennis/tennis_real.json"
 								target="_blank">
 								<img
+									loading="lazy"
 									src="content/images/tennis_real.gif"
 									alt="Tennis Real"
 									class="thumb-img-tennis"
@@ -386,6 +390,7 @@
 								href="content/tennis_visualizer-main/tennis_synthetic.html?input=../trajectories/Tennis/tennis_synthetic.json"
 								target="_blank">
 								<img
+									loading="lazy"
 									src="content/images/tennis_syn.gif"
 									alt="Tennis Synthetic"
 									class="thumb-img-tennis"
@@ -423,13 +428,13 @@
 		</div>
 
 		<div class="video_results_div">
-			<video class="video_results" controls playsinline autoplay muted loop>
+			<video loading="lazy" class="video_results" controls playsinline autoplay muted loop>
 				<source src="content/videos/tennis/tennis_syn12.mp4" type="video/mp4" />
 			</video>
-			<video class="video_results" controls playsinline autoplay muted loop>
+			<video loading="lazy" class="video_results" controls playsinline autoplay muted loop>
 				<source src="content/videos/tennis/tennis_syn21.mp4" type="video/mp4" />
 			</video>
-			<video class="video_results" controls playsinline autoplay muted loop>
+			<video loading="lazy" class="video_results" controls playsinline autoplay muted loop>
 				<source src="content/videos/tennis/tennis_syn47.mp4" type="video/mp4" />
 			</video>
 		</div>
@@ -449,29 +454,29 @@
 		</div>
 
 		<div class="video_results_div">
-			<video class="video_results" controls playsinline autoplay muted loop>
+			<video loading="lazy" class="video_results" controls playsinline autoplay muted loop>
 				<source src="content/videos/tennis/tennis_real3.mp4" type="video/mp4" />
 			</video>
 
-			<video class="video_results" controls playsinline autoplay muted loop>
+			<video loading="lazy" class="video_results" controls playsinline autoplay muted loop>
 				<source src="content/videos/tennis/tennis_real36.mp4" type="video/mp4" />
 			</video>
 
-			<video class="video_results" controls playsinline autoplay muted loop>
+			<video loading="lazy" class="video_results" controls playsinline autoplay muted loop>
 				<source src="content/videos/tennis/tennis_real25.mp4" type="video/mp4" />
 			</video>
 		</div>
 
 		<div class="video_results_div">
-			<video class="video_results" controls playsinline autoplay muted loop>
+			<video loading="lazy" class="video_results" controls playsinline autoplay muted loop>
 				<source src="content/videos/tennis/tennis_real3_pts.mp4" type="video/mp4" />
 			</video>
 
-			<video class="video_results" controls playsinline autoplay muted loop>
+			<video loading="lazy" class="video_results" controls playsinline autoplay muted loop>
 				<source src="content/videos/tennis/tennis_real36_pts.mp4" type="video/mp4" />
 			</video>
 
-			<video class="video_results" controls playsinline autoplay muted loop>
+			<video loading="lazy" class="video_results" controls playsinline autoplay muted loop>
 				<source src="content/videos/tennis/tennis_real25_pts.mp4" type="video/mp4" />
 			</video>
 		</div>
@@ -602,29 +607,29 @@
 		</div>
 
 		<div class="video_results_div">
-			<video class="video_results" controls playsinline autoplay muted loop>
+			<video class="video_results" loading="lazy" controls playsinline autoplay muted loop>
 				<source src="content/videos/sota/mocanu_clean.mp4" type="video/mp4" />
 			</video>
 
-			<video class="video_results" controls playsinline autoplay muted loop>
+			<video class="video_results" loading="lazy" controls playsinline autoplay muted loop>
 				<source src="content/videos/sota/shen_clean.mp4" type="video/mp4" />
 			</video>
 
-			<video class="video_results" controls playsinline autoplay muted loop>
+			<video class="video_results" loading="lazy" controls playsinline autoplay muted loop>
 				<source src="content/videos/sota/ours_clean.mp4" type="video/mp4" />
 			</video>
 		</div>
 
 		<div class="video_results_div">
-			<video class="video_results" controls playsinline autoplay muted loop>
+			<video class="video_results" loading="lazy" controls playsinline autoplay muted loop>
 				<source src="content/videos/sota/mocanu_5sd.mp4" type="video/mp4" />
 			</video>
 
-			<video class="video_results" controls playsinline autoplay muted loop>
+			<video class="video_results" loading="lazy" controls playsinline autoplay muted loop>
 				<source src="content/videos/sota/shen_5sd.mp4" type="video/mp4" />
 			</video>
 
-			<video class="video_results" controls playsinline autoplay muted loop>
+			<video class="video_results" loading="lazy" controls playsinline autoplay muted loop>
 				<source src="content/videos/sota/ours_5sd.mp4" type="video/mp4" />
 			</video>
 		</div>
