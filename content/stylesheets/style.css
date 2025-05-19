@@ -38,6 +38,16 @@ body {
 	/* padding-top: 5px; */
 	/* padding-bottom: 25px; */
 }
+@media (max-width: 768px) {
+	.container-lg {
+		flex-direction: column;
+	}
+
+	.teaser-img,
+	.teaser-video {
+		max-width: 90% !important;
+	}
+}
 
 .btn-light.disabled {
 	/* border: 2px black; */
