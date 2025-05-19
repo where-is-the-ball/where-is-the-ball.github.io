@@ -35,8 +35,8 @@ body {
 .teaser-img {
 	width: 100%;
 	height: auto;
-	padding-top: 5px;
-	padding-bottom: 25px;
+	/* padding-top: 5px; */
+	/* padding-bottom: 25px; */
 }
 
 .btn-light.disabled {
