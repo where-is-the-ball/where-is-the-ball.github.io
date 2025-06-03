@@ -181,6 +181,12 @@ hr.divider_intra {
 	vertical-align: middle; /* fallback in case inline-flex isn’t supported */
 }
 
+@media (max-width: 600px) {
+	.heading-with-logo {
+		font-size: 1.2rem;
+	}
+}
+
 .ours {
 	font-size: 1.2em;
 	text-decoration: none;
@@ -300,6 +306,13 @@ hr.divider_intra {
 	background-color: #d6c100; /* or your “sota” color */
 }
 
+@media (max-width: 600px) {
+	.legend {
+		font-size: 1rem;
+		text-align: center;
+	}
+}
+
 html {
 	scroll-behavior: smooth;
 }
@@ -391,9 +404,10 @@ html {
 .thumb {
 	position: relative;
 	display: inline-block;
-	margin: 1em 0;
+	margin: 0.5em 0;
 	z-index: 1;
 	overflow: visible; /* allow zoom overflow */
+	/* margin-top: -1rem; */
 }
 /* Magnifier icon (hidden by default) */
 .overlay-icon {
