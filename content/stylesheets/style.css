@@ -91,7 +91,7 @@ body {
 
 /* 3. Small breakpoint (phones) */
 /* ----------------------------- */
-@media (max-width: 600px) {
+@media (max-width: 900px) {
 	.media-row {
 		flex-direction: column; /* stack image & video */
 		gap: 1px;
@@ -260,6 +260,12 @@ hr.divider_intra {
 	height: auto;
 }
 
+@media (max-width: 900px) {
+	.video_results {
+		width: 49%;
+	}
+}
+
 .container_label {
 	max-width: 900px;
 	margin: 0 auto;
@@ -313,6 +319,17 @@ hr.divider_intra {
 	}
 }
 
+@media (max-width: 900px) {
+	.hide-when-small {
+		display: none !important;
+	}
+}
+@media (min-width: 900px) {
+	.hide-when-large {
+		display: none !important;
+	}
+}
+
 html {
 	scroll-behavior: smooth;
 }
@@ -348,7 +365,7 @@ html {
 }
 
 /* only show when viewport is ≤576px */
-@media (max-width: 576px) {
+@media (max-width: 900px) {
 	.zoom-caption {
 		display: block;
 	}
@@ -362,14 +379,14 @@ html {
 }
 
 /* only show when viewport is ≤576px */
-@media (max-width: 576px) {
+@media (max-width: 900px) {
 	.visualizer-mobile-caption {
 		display: block;
 	}
 }
 
 /* 2) Below 600px (or choose your own cutoff), stack them */
-@media (max-width: 600px) {
+@media (max-width: 900px) {
 	.visualizer-container {
 		flex-direction: column;
 		gap: 15px;
