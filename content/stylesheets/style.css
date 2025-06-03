@@ -539,3 +539,16 @@ pre.citation {
 		transform: translateX(-50%);
 	}
 }
+
+/* default (desktop): keep right-aligned */
+.footer-note {
+	text-align: right;
+	font-size: 13px;
+}
+
+/* when viewport ≤ 600px, center it */
+@media (max-width: 900px) {
+	.footer-note {
+		text-align: center !important;
+	}
+}
