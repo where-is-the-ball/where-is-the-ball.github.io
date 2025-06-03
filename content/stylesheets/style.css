@@ -20,7 +20,7 @@ body {
 	max-width: 900px !important;
 }
 
-.text-container-title {
+/* .text-container-title {
 	text-align: center;
 	position: relative;
 	background-color: transparent;
@@ -30,22 +30,84 @@ body {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+} */
+
+.text-container-title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap; /* → allow wrapping on narrow screens */
+	text-align: center; /* → center‐align multiline headings */
+	font-size: calc(1rem + 1.3vw);
+	line-height: 1.2; /* → tighten line‐height if it wraps */
+	margin: 0; /* if you don’t want extra top/bottom space */
 }
 
-.teaser-img {
+.text-container-title img {
+	height: 1em; /* → match image height to (responsive) text */
+	margin: 0 0.5em 0 0; /* → small gap after the “Where Is The Ball” text */
+	flex-shrink: 0; /* → prevent the logo from “collapsing” too much */
+	vertical-align: middle;
+	font-size: 1.5em;
+}
+
+/* 1. Base rules (desktop first) */
+/* -------------------------------- */
+
+/* Cap both image and video at 600px, let them shrink if needed */
+.teaser-img,
+.teaser-video {
 	width: 100%;
 	height: auto;
-	/* padding-top: 5px; */
-	/* padding-bottom: 25px; */
+	border-radius: 8px;
 }
+
+/* A flex container to hold img + video side by side */
+.media-row {
+	display: flex;
+	flex-direction: row; /* ← row by default on large screens */
+	flex-wrap: nowrap; /* ← don’t wrap unless forced by media query */
+	gap: 3px;
+	justify-content: center;
+	align-items: center;
+}
+
+.media-row .teaser-img,
+.media-row .teaser-video {
+	flex: 1 1 45%; /* each takes ~45% of row, up to its max-width */
+	max-width: 600px; /* cap so they don’t blow up on huge screens */
+	height: auto;
+	border-radius: 8px;
+}
+
+/* 2. Mid-size breakpoint (tablet) */
+/* --------------------------------- */
+
 @media (max-width: 768px) {
 	.container-lg {
 		flex-direction: column;
 	}
+}
 
-	.teaser-img,
-	.teaser-video {
-		max-width: 90% !important;
+/* 3. Small breakpoint (phones) */
+/* ----------------------------- */
+@media (max-width: 600px) {
+	.media-row {
+		flex-direction: column; /* stack image & video */
+		gap: 1px;
+		align-items: center;
+	}
+	.media-row .teaser-img,
+	.media-row .teaser-video {
+		flex: none;
+		width: 100% !important; /* force full width of the column */
+		max-width: 100% !important; /* override any inline max-width */
+		height: auto;
+		border-radius: 8px;
+	}
+	.scroll-container {
+		width: 100%;
+		margin: 2px;
 	}
 }
 
@@ -242,24 +304,72 @@ html {
 	scroll-behavior: smooth;
 }
 
+/* 1) Make .visualizer-container a flex‐row by default */
 .visualizer-container {
-	max-width: 1200px;
-	margin: 0 auto;
 	display: flex;
-	gap: 2rem; /* space between columns */
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: center;
 	align-items: flex-start;
 }
 
+/* Each column can flex to fill half the width on large screens */
 .visualizer-column {
-	flex: 1;
+	flex: 1 1 45%;
+	box-sizing: border-box;
+	align-items: center;
 	text-align: center;
+	padding-left: 100px;
+}
+/* In your stylesheet (not inline) */
+.visualizer-column .thumb img {
+	max-width: 100%;
+	height: auto;
+	object-fit: contain;
+}
+/* hide by default */
+.zoom-caption {
+	display: none;
+	margin-top: 0.5rem;
+	font-size: 0.9rem;
 }
 
-.visualizer-img {
-	display: inline-block; /* keeps it inline within the column */
-	height: 300px;
-	border: 3px solid #000;
-	margin-bottom: 0.5em;
+/* only show when viewport is ≤576px */
+@media (max-width: 576px) {
+	.zoom-caption {
+		display: block;
+	}
+}
+
+/* hide by default */
+.visualizer-mobile-caption {
+	display: none;
+	margin-top: 0.5rem;
+	font-size: 0.9rem;
+}
+
+/* only show when viewport is ≤576px */
+@media (max-width: 576px) {
+	.visualizer-mobile-caption {
+		display: block;
+	}
+}
+
+/* 2) Below 600px (or choose your own cutoff), stack them */
+@media (max-width: 600px) {
+	.visualizer-container {
+		flex-direction: column;
+		gap: 15px;
+		align-items: center; /* still centers any narrower columns */
+		text-align: center;
+	}
+	.visualizer-column {
+		flex: none;
+		width: 90%; /* make it 90% of the parent instead of 100% */
+		max-width: 400px; /* cap it so it never grows too wide */
+		box-sizing: border-box;
+		padding-left: 0px;
+	}
 }
 
 .visualizer-links {

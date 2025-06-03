@@ -91,17 +91,25 @@
 		11th CVsports @ CVPR 2025
 	</h4>
 
-	<!-- Teaser -->
-	<div class="container-lg media-row">
-		<img src="content/images/fig_ow.png" style="max-width: 50%; height: auto; border-radius: 8px"
-			alt="overview teaser" class="teaser-img" loading="eager" />
+	<!-- Teaser: Overview Image + Video -->
+	<div class="container-lg flex-row-container" style="
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    max-width: 100%;
+  ">
+		<!-- Left: Overview Image -->
+		<img src="content/images/fig_ow.png" alt="overview teaser" class="teaser-img" loading="eager"
+			style="max-width: 50%; height: auto; border-radius: 8px" />
 
+		<!-- Right: Video -->
 		<video class="teaser-video" playsinline autoplay muted loop loading="eager"
 			style="max-width: 61%; height: auto; border-radius: 8px">
 			<source src="content/videos/teaser/tennis_web_teaser_small.mp4" type="video/mp4" />
 		</video>
 	</div>
-
 
 	<div class="container" style="max-width: 1270px; margin-top: 0px">
 		<div class="scroll-container">
@@ -258,13 +266,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<a href="./content/images/pipeline.png" target="_blank" style="display: inline-block;">
-					<img class="overview" src="./content/images/pipeline.png"
-						style="width: 90%; max-width: 100%; cursor: zoom-in;" alt="Pipeline diagram" loading="lazy" />
-				</a>
-				<p class="zoom-caption text-danger">
-					👆 Click to enlarge
-				</p>
+				<img class="overview" src="./content/images/pipeline.png" style="width: 90%; max-width: 100%" />
 			</div>
 		</div>
 	</div>
@@ -283,10 +285,9 @@
 				Explore the results of our method in an interactive visualizer. You can view the 3D trajectories,
 				and ground truth data for each test scenario.
 			</p>
-			<p class="visualizer-mobile-caption text-danger"> Note: Best viewed in a desktop browser.</p>
 		</div>
 
-		<div class="container" style="max-width: 1200px;">
+		<div class="container" style="max-width: 1200px">
 			<div class="visualizer-container">
 				<!-- Trajectory Column -->
 				<div class="visualizer-column">
