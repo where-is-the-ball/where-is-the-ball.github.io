@@ -202,16 +202,16 @@
 						single network.
 					</li>
 					<li>
-						Only trained on simulations, generalizes to the real world &mdash; no real 3D or multi-view
+						Only trained on simulations, generalizes to the real world &mdash; no real 3D or real multi-view
 						supervision!
 					</li>
 					<li>
-						Enforces reprojection consistency by predicting height instead of regressing full 3D
+						Enforces reprojection consistency by predicting height rather than regressing full 3D
 						coordinates.
 					</li>
 					<li>
-						Relative-absolute input encoding is designed to better generalize to spatial shifts and
-						achieve location invariance.
+						Relative-absolute input encoding is designed to improve generalization to spatial shifts and
+						achieve location equivariance.
 					</li>
 				</ol>
 				<br />
@@ -226,15 +226,18 @@
 			<div class="col-md-12">
 				<h2>Our pipeline</h2>
 				<p>
-					Our goal is to recover the 3D trajectory of a ball from a sequence of 2D tracked positions. A
-					naive approach would be to directly regress 3D coordinates from the 2D observations, but this is
-					often unreliable due to sensitivity to camera parameters like focal length and viewpoint. To
-					address this, we transform each 2D input into a plane-point representation that removes
-					dependency on the camera setup, allowing us to train on multiple cameras and perform inference
-					within a single network.. Instead of predicting full 3D coordinates, we estimate the ball’s
-					height over time to ensure reprojection consistency with the original 2D observations. We also
-					introduce a relative-absolute input encoding, which improves generalization to spatial shifts
-					and helps the model achieve location invariance.
+					Our goal is to recover the 3D trajectory of a ball from a sequence of 2D tracked positions. One
+					naive approach is to directly regress 3D coordinates from the 2D tracking pixels. However, this
+					method does not ensure reprojection consistency with the original 2D inputs. Additionally, using 2D
+					tracking pixels as input implicitly ties the model to camera parameters (e.g., focal length,
+					position, and orientation), which limits generalization across different viewpoints.
+
+					To overcome these limitations, we transform each 2D input into a plane-point representation that
+					removes dependency on the camera setup, enabling training on multiple cameras and inference within a
+					single network. Rather than predicting full 3D coordinates, we estimate the ball’s height over time
+					to maintain reprojection consistency with the original 2D observations. We also introduce a
+					relative-absolute input encoding, which improves generalization to spatial shifts and helps the
+					model achieve location equivariance.
 
 					<!-- Given a tracking sequence of 2D ball positions, we estimates the 3D ball position for each
 						timesteps. Instead of directly regressing a 3D ball position from 2D, we first reparameterize
@@ -246,10 +249,10 @@
 						location invariance. -->
 				</p>
 				<p>
-					Our pipeline consists of three main LSTM-based components: 1. End-of-Trajectory (EoT) Network,
-					which predicts whether the ball is ending its current motion or changing direction (e.g., after
-					a player’s hit); 2. Height Network, which estimates the ball’s height over time, later used to
-					reconstruct the full 3D trajectory; and 3. Refinement Network, which further adjusts the
+					Our pipeline consists of three main LSTM-based components: 1) the End-of-Trajectory (EoT) Network,
+					which predicts whether the ball is ending its current motion or changing direction (e.g., after a
+					player’s hit); 2) the Height Network, which estimates the ball’s height over time and is later used
+					to reconstruct the full 3D trajectory; and 3) the Refinement Network, which further adjusts the
 					predicted 3D coordinates for improved accuracy and smoothness.
 				</p>
 			</div>
@@ -280,8 +283,8 @@
 		<div class="container" style="max-width: 900px">
 			<h3>Interactive 3D Visualizer</h3>
 			<p>
-				Explore the results of our method in an interactive visualizer. You can view the 3D trajectories,
-				and ground truth data for each test scenario.
+				Explore the results of our method in an interactive visualizer. You can view the 3D trajectories and
+				ground truth data for each test scenario.
 			</p>
 			<p class="visualizer-mobile-caption text-danger"> Note: Best viewed in a desktop browser.</p>
 		</div>
@@ -343,9 +346,9 @@
 	<!-- Example videos -->
 	<div class="container" style="max-width: 900px">
 		<h3>Example videos</h3>
-		We present example video results across four test scenarios, covering both real-world and synthetic
-		settings: tennis (TrackNet), mocap, football (IPL), and a single-launch test set. These results can be
-		explored in the interactive <a href="#visualizer">visualizer</a>.
+		We present example video results across four test scenarios, covering both real-world and synthetic settings:
+		tennis (TrackNet), MoCap, football (IPL), and a single-launch test set. These results can also be explored using
+		the interactive <a href="#visualizer">visualizer</a>.
 	</div>
 
 	<!-- TrackNet(Tennis)  -->
@@ -420,7 +423,7 @@
 	<div class="container_label">
 		<h5 class="heading-with-logo">
 			<img src="./content/logo/mocap_logo.png" alt="Logo" class="heading-logo" />
-			Mocap – Synthetic
+			MoCap – Synthetic
 			<img src="./content/logo/mocap_logo.png" alt="Logo" class="heading-logo" />
 		</h5>
 		<div class="legend">
@@ -447,7 +450,7 @@
 		<div class="container_label">
 			<h5 class="heading-with-logo">
 				<img src="./content/logo/mocap_logo.png" alt="Logo" class="heading-logo" />
-				Mocap – Real
+				MoCap – Real
 				<img src="./content/logo/mocap_logo.png" alt="Logo" class="heading-logo" />
 			</h5>
 			<div class="legend">
