@@ -177,7 +177,7 @@ function setupGUI() {
 
 	folder_traj
 		.add(config, "showall")
-		.name("Show Prediction Points")
+		.name("Show Prediction Points 🟠")
 		.listen()
 		.onChange(function (value) {
 			for (let i = 0; i < traj.children.length; i++) {
@@ -186,7 +186,7 @@ function setupGUI() {
 		});
 	folder_traj
 		.add(config, "showline")
-		.name("Show Lines")
+		.name("Show Lines 🟠")
 		.listen()
 		.onChange(function (value) {
 			for (let i = 0; i < traj_line.children.length; i++) {
@@ -196,7 +196,7 @@ function setupGUI() {
 
 	folder_traj
 		.add(config, "showun")
-		.name("Show Unrefined")
+		.name("Show Unrefined 🔵")
 		.listen()
 		.onChange(function (value) {
 			for (let i = 0; i < un_traj.children.length; i++) {
@@ -205,7 +205,7 @@ function setupGUI() {
 		});
 	folder_traj
 		.add(config, "showunline")
-		.name("Show Unrefined Lines")
+		.name("Show Unrefined Lines 🔵")
 		.listen()
 		.onChange(function (value) {
 			for (let i = 0; i < un_traj_line.children.length; i++) {
@@ -279,39 +279,43 @@ function setupGUI() {
 			controls.update();
 		},
 		copycam: function () {
-			console.log(controls.target.x);
-			console.log("[#] Cam pos: " + camera.position.x);
-
-			let str =
-				"camera=" +
-				camera.position.x +
-				"," +
-				camera.position.y +
-				"," +
-				camera.position.z +
-				"," +
-				controls.target.x +
-				"," +
-				controls.target.y +
-				"," +
-				controls.target.z;
 			const pos = camera.position.toArray().map((n) => n.toFixed(12));
 			const quat = camera.quaternion.toArray().map((n) => n.toFixed(12));
 			const fov = camera.isPerspectiveCamera ? camera.fov.toFixed(12) : 0;
 
-			const preset = `${name}: {
-        position: [${pos.join(", ")}],
-        quaternion: [${quat.join(", ")}],
-        fov: ${fov},
-      },`;
+			const preset = `{
+				position: [${pos.join(", ")}],
+				quaternion: [${quat.join(", ")}],
+				fov: ${fov},
+			},`;
 
-			console.log(preset);
-			navigator.clipboard.writeText(str);
+			navigator.clipboard
+				.writeText(preset)
+				.then(() => {
+					showCopyNotification(); // Show notification
+				})
+				.catch((err) => {
+					console.error("[#] Failed to copy camera data: ", err);
+				});
 		},
 	};
 	const folder_debug = gui.addFolder("Developer Tools");
 	folder_debug.add(cam_tools, "copycam").name("Copy camera params");
 	folder_debug.add(cam_tools, "courtview").name("Reset camera view");
+}
+
+function showCopyNotification() {
+	const box = document.getElementById("copyNotification");
+	box.style.display = "block";
+	box.style.opacity = "1";
+
+	setTimeout(() => {
+		box.style.transition = "opacity 0.5s";
+		box.style.opacity = "0";
+		setTimeout(() => {
+			box.style.display = "none";
+		}, 500);
+	}, 1500); // Show for 1.5 seconds
 }
 
 function setupScene(scene, f, center) {

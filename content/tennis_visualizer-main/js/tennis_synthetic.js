@@ -176,7 +176,7 @@ function exportCurrentCamera() {
 }
 
 function setupGUI() {
-	const gui = new dat.GUI({ width: 350 });
+	const gui = new dat.GUI({ width: 380 });
 
 	gui.useLocalStorage = true;
 	const folder_traj = gui.addFolder("Trajectory");
@@ -219,7 +219,7 @@ function setupGUI() {
 
 	folder_traj
 		.add(config, "showall")
-		.name("Show Prediction Points")
+		.name("Show Prediction Points 🔵")
 		.listen()
 		.onChange(function (value) {
 			for (let i = 0; i < traj.children.length; i++) {
@@ -228,7 +228,7 @@ function setupGUI() {
 		});
 	folder_traj
 		.add(config, "showline")
-		.name("Show Prediction Lines")
+		.name("Show Prediction Lines 🔵")
 		.listen()
 		.onChange(function (value) {
 			for (let i = 0; i < traj_line.children.length; i++) {
@@ -238,7 +238,7 @@ function setupGUI() {
 
 	folder_traj
 		.add(config, "showun")
-		.name("Show Ground truth Points")
+		.name("Show Ground truth Points 🔴")
 		.listen()
 		.onChange(function (value) {
 			for (let i = 0; i < un_traj.children.length; i++) {
@@ -247,7 +247,7 @@ function setupGUI() {
 		});
 	folder_traj
 		.add(config, "showunline")
-		.name("Show Ground truth Lines")
+		.name("Show Ground truth Lines 🔴")
 		.listen()
 		.onChange(function (value) {
 			for (let i = 0; i < un_traj_line.children.length; i++) {
@@ -324,7 +324,7 @@ function setupGUI() {
 			const quat = camera.quaternion.toArray().map((n) => n.toFixed(12));
 			const fov = camera.isPerspectiveCamera ? camera.fov.toFixed(12) : 0;
 
-			const preset = `${name}: {
+			const preset = `{
 				position: [${pos.join(", ")}],
 				quaternion: [${quat.join(", ")}],
 				fov: ${fov},
