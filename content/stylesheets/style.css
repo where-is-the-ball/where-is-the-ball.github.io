@@ -38,7 +38,7 @@ body {
 	justify-content: center;
 	flex-wrap: wrap; /* → allow wrapping on narrow screens */
 	text-align: center; /* → center‐align multiline headings */
-	font-size: calc(1rem + 1.3vw);
+	font-size: calc(1rem + 0.9vw);
 	line-height: 1.2; /* → tighten line‐height if it wraps */
 	margin: 0; /* if you don’t want extra top/bottom space */
 }
